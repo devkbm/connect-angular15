@@ -1,0 +1,21 @@
+<div class="title">
+  <h1>나의 하루</h1>
+  <h2>{{ today | date:'M월 d일' }}</h2>
+</div>
+<div>
+  <app-todo-group-list (onSelectedTodoGroup)="getTodoList($event)"></app-todo-group-list>
+</div>
+
+<div>
+  <div *ngFor="let todo of todos; index as i" (click)="toggleTodo(todo)">
+    <app-todo [todo]="todo"></app-todo>
+  </div>
+</div>
+
+<div>
+  <app-add-todo
+    [pkTodoGroup]="selectedPkTodoGroup"
+    (onTodoAdded)="addTodo($event)">
+  </app-add-todo>
+</div>
+

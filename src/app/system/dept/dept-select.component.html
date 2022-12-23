@@ -1,0 +1,15 @@
+<nz-select
+  class="app-dept-select"
+  nzShowSearch
+  [(ngModel)]="_value"
+  [nzDisabled]="disabled"
+  [nzPlaceHolder]="placeholder"
+  nzShowSearch
+  (blur)="onTouched($event)"
+  (ngModelChange)="changeFn($event)">
+    <nz-option
+        *ngFor="let option of deptList"
+        [nzLabel]="option.deptNameKorean + '[' + option.deptCode + ']'"
+        [nzValue]="option.deptCode">
+    </nz-option>
+</nz-select>

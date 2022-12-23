@@ -1,0 +1,13 @@
+<!--
+<button (click)="getCommonCodeHierarchy()">
+    조회
+</button>
+-->
+{{searchValue}}
+<nz-tree
+    #treeComponent
+    [nzData]="nodeItems"
+    [nzSearchValue]="searchValue"
+    (nzClick)="nzClick($event)">        
+</nz-tree>
+    

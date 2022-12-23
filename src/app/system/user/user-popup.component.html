@@ -1,0 +1,10 @@
+<nz-card [nzBordered]="false">
+    <nz-card-meta
+      [nzAvatar]="avatarTemplate"
+      [nzTitle]="user.name + '(' + user.userId + ')'"
+      [nzDescription]="user.modifiedBy">
+    </nz-card-meta>
+</nz-card>
+<ng-template #avatarTemplate>
+    <nz-avatar class="avatar" [nzShape]="'square'" [nzSize]='96' [nzSrc]="imgSrc"></nz-avatar>
+</ng-template>

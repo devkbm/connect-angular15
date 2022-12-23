@@ -1,0 +1,72 @@
+<button nz-button (click)="getMyWorkGroupList()">
+  <span nz-icon nzType="search" nzTheme="outline"></span>
+  조회
+</button>
+
+<button nz-button (click)="newWorkGroup()">
+  <span nz-icon nzType="form" nzTheme="outline"></span>
+  신규 작업그룹
+</button>
+
+<button nz-button (click)="newSchedule()">
+  <span nz-icon nzType="form" nzTheme="outline"></span>
+  신규 일정
+</button>
+
+<div class="grid-wrapper">
+  <app-daypilot-calendar-navigator #navigator
+    class="navi"
+    [events]="this.eventData"
+    (selectChanged)="navigatorSelectChanged($event)">
+  </app-daypilot-calendar-navigator>
+
+  <app-myworkgroup-grid class="title"
+      #myWorkGroupGrid
+      (rowSelected)="workGroupSelect($event)"
+      (rowDoubleClicked)="modifyWorkGroup($event)">
+  </app-myworkgroup-grid>
+
+  <app-work-calendar
+      #workCalendar class="calendar"
+      [fkWorkGroup]="selectedWorkGroupId"
+      (itemSelected)="editSchedule($event)"
+      (newDateSelected)="newScheduleByDateSelect($event)"
+      (eventDataChanged)="eventDateChanged($event)"
+      (visibleRangeChanged)="calendarVisibleRangeChanged($event)"
+      (modeChanged)="modeChanged($event)">
+  </app-work-calendar>
+</div>
+
+<nz-drawer
+    [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
+    [nzMaskClosable]="true"
+    [nzWidth]="720"
+    [nzVisible]="scheduleDrawerVisible"
+    nzTitle="일정 등록"
+    (nzOnClose)="closeScheduleDrawer()">
+
+    <app-work-schedule-form *nzDrawerContent
+        #workScheduleForm
+        [initLoadId]="this.selectedScheduleId"
+        [newFormValue]="this.newScheduleArgs"
+        (formSaved)="getScheduleList()"
+        (formDeleted)="getScheduleList()"
+        (formClosed)="closeScheduleDrawer()">
+    </app-work-schedule-form>
+</nz-drawer>
+
+<nz-drawer
+    [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
+    [nzMaskClosable]="true"
+    [nzWidth]="720"
+    [nzVisible]="workGroupDrawerVisible"
+    nzTitle="작업그룹 등록"
+    (nzOnClose)="closeWorkGroupDrawer()">
+
+    <app-workgroup-form *nzDrawerContent
+        #workGroupForm
+        (formSaved)="getMyWorkGroupList()"
+        (formDeleted)="getMyWorkGroupList()"
+        (formClosed)="closeWorkGroupDrawer()">
+    </app-workgroup-form>
+</nz-drawer>

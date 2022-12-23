@@ -1,0 +1,15 @@
+<!--
+<div class="calendar-div">
+    <full-calendar #calendar [options]="calendarOptions">
+    </full-calendar>
+</div>
+-->
+<div class="calendar-div">
+  <app-daypilot-calendar
+    [events]="eventData"
+    (eventClicked)="eventClicked($event)"
+    (rangeChanged)="rangeChanged($event)"
+    (datesSelected)="onDateClick($event)"
+    (modeChanged)="calendarModeChanged($event)">
+  </app-daypilot-calendar>
+</div>

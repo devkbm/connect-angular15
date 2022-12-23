@@ -1,0 +1,83 @@
+{{fg.getRawValue() | json}}
+<form nz-form [formGroup]="fg" nzLayout="vertical">
+  <!-- 폼 오류 메시지 템플릿 -->
+  <ng-template #errorTpl let-control>
+    <ng-container *ngIf="control.hasError('required')">
+      필수 입력 값입니다.
+    </ng-container>
+    <ng-container *ngIf="control.hasError('exists')">
+      기존 코드가 존재합니다.
+    </ng-container>
+  </ng-template>
+
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <!--작업그룹 Id 필드-->
+      <app-nz-input-text
+         formControlName="workGroupId"
+        itemId="workGroupId"
+        placeholder=""
+        [required]="true" [nzErrorTip]="errorTpl">작업그룹 Id
+      </app-nz-input-text>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <!--작업그룹 Id 필드-->
+      <app-nz-input-text #workGroupName
+         formControlName="workGroupName"
+        itemId="workGroupName"
+        placeholder="작업그룹명을 입력해주세요."
+        [required]="true" [nzErrorTip]="errorTpl">작업그룹명
+      </app-nz-input-text>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <!--
+      <nz-form-item>
+        <nz-form-label nzFor="color" nzRequired>색상</nz-form-label>
+        <nz-form-control>
+          <input
+            formControlName="color"
+            [cpPresetColors]="preset_colors"
+            [(colorPicker)]="color"
+            [style.background]="color"
+            [cpAlphaChannel]="'always'"
+            [cpOutputFormat]="'hex'"
+            [cpOKButton]=true/>
+        </nz-form-control>
+      </nz-form-item>
+      -->
+
+      <app-nz-input-color-picker
+         formControlName="color"
+        [itemId]="'color'"
+        placeholder="색상을 입력해주세요."
+        [required]="false" [nzErrorTip]="errorTpl">색상
+      </app-nz-input-color-picker>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <!--작업그룹 Id 필드-->
+      <app-nz-input-select
+        [mode]="'multiple'"
+         formControlName="memberList"
+        [itemId]="'memberList'"
+        [options]="memberList" [opt_value]="'userId'" [opt_label]="'name'" [mode]="'tags'"
+        [placeholder]="'Please select'"
+        [nzErrorTip]="errorTpl" [required]="true">팀원
+      </app-nz-input-select>
+    </div>
+
+  </div>
+
+</form>
+
+<div class="footer">
+  <app-nz-crud-button-group
+    (closeClick)="closeForm()"
+    (saveClick)="save()"
+    (deleteClick)="remove(fg.get('workGroupId')?.value)">
+  </app-nz-crud-button-group>
+</div>
