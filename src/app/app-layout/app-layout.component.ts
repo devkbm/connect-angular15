@@ -1,17 +1,15 @@
-import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { NzFormatEmitEvent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 
 import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 import { AppLayoutService } from './app-layout.service';
 
-import { ResponseList } from '../core/model/response-list';
-import { UserSessionService } from '../core/service/user-session.service';
-import { UserPopupComponent } from '../system/user/user-popup.component';
-import { SelectControlModel } from '../core/model/select-control.model.ts';
+import { ResponseList } from 'src/app/core/model/response-list';
+import { UserSessionService } from 'src/app/core/service/user-session.service';
+import { SelectControlModel } from 'src/app/core/model/select-control.model.ts';
 import { MenuHierarchy } from './app-layout.model';
-
-
+import { NzMenuModeType, NzMenuThemeType } from 'ng-zorro-antd/menu';
 
 @Component({
   selector: 'app-app-layout',
@@ -20,27 +18,32 @@ import { MenuHierarchy } from './app-layout.model';
 })
 export class AppLayoutComponent implements OnInit  {
 
-  isCollapsed = false;
-  triggerTemplate: TemplateRef<void> | null = null;
-  selectedValue: string = '';
-  message: string = '';
-  menuGroupCode: string = '';
   profileAvatarSrc: string = '';
 
-  menuGroupList: SelectControlModel[] = [];
-  menuItems: MenuHierarchy[] = [];
+  menuGroupInfo: {list: SelectControlModel[], selectedId: string} = {
+    list: [],
+    selectedId: ''
+  }
 
-  @ViewChild('treeCom', {static: false}) treeCom: any;
+  menuInfo: {theme: NzMenuThemeType, mode: NzMenuModeType, inline_indent: number, isCollapsed: boolean, menuItems: MenuHierarchy[]} = {
+    theme: 'dark',
+    mode: 'inline',
+    inline_indent: 12,
+    isCollapsed: false,
+    menuItems: []
+  }
+  // 기본 SIDER 메뉴 트리거 숨기기위해 사용
+  triggerTemplate: TemplateRef<void> | null = null;
+
+  footerMessage: string = '';
 
   constructor(private appAlarmService: AppAlarmService,
               private sessionService: UserSessionService,
               private service: AppLayoutService,
-              private viewContainerRef: ViewContainerRef,
-              private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.appAlarmService.currentMessage.subscribe(message => this.message = message);
+    this.appAlarmService.currentMessage.subscribe(message => this.footerMessage = message);
 
     this.setInitMenuGroup();
     this.setAvatar();
@@ -49,29 +52,22 @@ export class AppLayoutComponent implements OnInit  {
   /**
    * 초기 메뉴 그룹을 설정한다.
    */
-  private setInitMenuGroup(): void {
+  setInitMenuGroup(): void {
     const stringMenuGroupList = sessionStorage.getItem('menuGroupList') as string;
-    const selectedMenuGroup   = sessionStorage.getItem('selectedMenuGroup') as string;
+    const sessionMenuGroup   = sessionStorage.getItem('selectedMenuGroup') as string;
 
-    this.menuGroupList = JSON.parse(stringMenuGroupList);
+    this.menuGroupInfo.list = JSON.parse(stringMenuGroupList);
 
-    if ( selectedMenuGroup != null ) {
-      this.selectedValue = selectedMenuGroup;
+    if (sessionMenuGroup) {
+      this.menuGroupInfo.selectedId = sessionMenuGroup;
+      this.selectMenuGroup(sessionMenuGroup);
     } else {
-      this.selectedValue = this.menuGroupList[0].value;
+      this.menuGroupInfo.selectedId = this.menuGroupInfo.list[0].value;
+      this.selectMenuGroup(this.menuGroupInfo.list[0].value);
     }
-
-    if (this.selectedValue != null) {
-      this.selectMenuGroup(this.selectedValue);
-    }
-  }
-
-  sendMen(mess: any): void {
-    this.menuGroupCode = mess;
   }
 
   selectMenuGroup(value: string): void {
-
     sessionStorage.setItem('selectedMenuGroup', value);
 
     this.service
@@ -79,32 +75,28 @@ export class AppLayoutComponent implements OnInit  {
         .subscribe(
           (model: ResponseList<MenuHierarchy>) => {
             if ( model.total > 0 ) {
-              this.menuItems = model.data;
+              this.menuInfo.menuItems = model.data;
               sessionStorage.setItem('menuList', JSON.stringify(model.data));
             } else {
-              this.menuItems = [];
+              this.menuInfo.menuItems = [];
               sessionStorage.setItem('menuList', '');
             }
 
-            const seledtedMenu = sessionStorage.getItem('selectedMenu');
-            this.selectMenuItem(seledtedMenu as string);
+            const url = sessionStorage.getItem('selectedMenu') as string;
+            this.moveToUrl(url);
           }
         );
   }
 
-  selectMenu(event: NzFormatEmitEvent): void {
+  moveToUrl(url: string) {
+    sessionStorage.setItem('selectedMenu', url);
+    this.router.navigate([url]);
+  }
 
-    console.log(event.node?.origin);
+  selectMenu(event: NzFormatEmitEvent): void {
     const node = event.node?.origin as NzTreeNodeOptions;
     sessionStorage.setItem('selectedMenu', node.key);
     this.router.navigate([node['url']]);
-  }
-
-  selectMenuItem(url: string): void {
-    console.log(url);
-    sessionStorage.setItem('selectedMenu', url);
-    // '/home/' +
-    this.router.navigate([url]);
   }
 
   setAvatar(): void {

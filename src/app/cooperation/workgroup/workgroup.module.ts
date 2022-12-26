@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /* NG-ZORRO */
@@ -78,7 +78,6 @@ const nzModules = [
   ],
   providers: [
     { provide: NZ_I18N, useValue: ko_KR },
-    DatePipe,
     WorkGroupService,
     WorkScheduleService
   ],

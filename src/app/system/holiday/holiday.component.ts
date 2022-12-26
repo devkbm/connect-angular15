@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DatePipe, Location } from '@angular/common';
+import { formatDate, Location } from '@angular/common';
 
 import { AppBase } from 'src/app/core/app/app-base';
 import { ResponseObject } from 'src/app/core/model/response-object';
@@ -17,17 +17,17 @@ import { Holiday } from './holiday.model';
 })
 export class HolidayComponent extends AppBase implements OnInit {
 
-  @ViewChild('holidayGrid') grid!: HolidayGridComponent;  
-    
+  @ViewChild('holidayGrid') grid!: HolidayGridComponent;
+
   query: { key: string, value: string, list: {label: string, value: string}[], year: Date } = {
     key: 'resourceCode',
     value: '',
     list: [
       {label: '휴일명', value: 'resourceCode'},
-      {label: '비고', value: 'description'}      
+      {label: '비고', value: 'description'}
     ],
     year: new Date()
-  }  
+  }
 
   drawerHoliday: { visible: boolean, initLoadId: any } = {
     visible: false,
@@ -36,8 +36,7 @@ export class HolidayComponent extends AppBase implements OnInit {
 
   constructor(location: Location,
               private service: HolidayService,
-              private appAlarmService: AppAlarmService,
-              private datePipe: DatePipe) {
+              private appAlarmService: AppAlarmService) {
     super(location);
   }
 
@@ -58,7 +57,7 @@ export class HolidayComponent extends AppBase implements OnInit {
       params[this.query.key] = this.query.value;
     }
 
-    const date: Date = this.query.year;    
+    const date: Date = this.query.year;
 
     this.closeDrawer();
     this.grid.getGridList(date.getFullYear()+'0101', date.getFullYear()+'1231');
@@ -66,23 +65,23 @@ export class HolidayComponent extends AppBase implements OnInit {
 
   newHoliday(): void {
     this.drawerHoliday.initLoadId = null;
-    this.openDrawer();    
+    this.openDrawer();
   }
-  
-  deleteHoliday(): void {    
-    const date = this.grid.getSelectedRows()[0].date;    
+
+  deleteHoliday(): void {
+    const date = this.grid.getSelectedRows()[0].date;
     this.delete(date);
   }
 
   delete(date: Date): void {
-    const id = this.datePipe.transform(date, 'yyyyMMdd') as string;
+    const id = formatDate(date, 'yyyyMMdd','ko-kr') as string;
     if (id === null) return;
 
     this.service
         .deleteHoliday(id)
         .subscribe(
           (model: ResponseObject<Holiday>) => {
-            this.appAlarmService.changeMessage(model.message);            
+            this.appAlarmService.changeMessage(model.message);
             this.getHolidayList();
           }
         );
@@ -94,6 +93,6 @@ export class HolidayComponent extends AppBase implements OnInit {
 
   edit(item: any): void {
     this.drawerHoliday.initLoadId = item.date;
-    this.openDrawer();        
+    this.openDrawer();
   }
 }

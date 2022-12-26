@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 
@@ -14,7 +14,7 @@ import { ICellRendererParams } from 'ag-grid-community';
 export class CheckboxRendererComponent implements ICellRendererAngularComp {
 
   params: any;
-  disabled: any;
+  disabled: boolean = false;
   label: string = '';
   _value: any;
 

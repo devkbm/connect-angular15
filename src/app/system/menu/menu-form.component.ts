@@ -167,7 +167,6 @@ export class MenuFormComponent extends FormBase implements OnInit, AfterViewInit
         .getMenuGroupList()
         .subscribe(
           (model: ResponseList<MenuGroup>) => {
-            console.log(model.data);
             if (model.total > 0) {
               this.menuGroupList = model.data;
             } else {
