@@ -8,6 +8,8 @@ import { CustomHttpInterceptor } from '../core/interceptor/custom-http-intercept
 /* Inner Component */
 import { LoginComponent } from './login.component';
 import { LoginService } from './login.service';
+import { Login2Component } from './login2.component';
+import { Login3Component } from './login3.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { LoginService } from './login.service';
     HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'})
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    Login2Component,
+    Login3Component
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
@@ -26,7 +30,9 @@ import { LoginService } from './login.service';
     LoginService
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    Login2Component,
+    Login3Component
   ]
 })
 export class LoginModule { }
