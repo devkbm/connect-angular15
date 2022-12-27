@@ -12,7 +12,6 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
@@ -27,8 +26,6 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
 
-import { SharedModule } from 'src/app/shared/shared.module';
-
 import { HrmRelationCodeGridComponent } from './hrm-relation-code-grid.component';
 import { HrmCodeGridComponent } from './hrm-code-grid.component';
 import { HrmCodeTypeGridComponent } from './hrm-code-type-grid.component';
@@ -38,6 +35,12 @@ import { HrmRelationCodeFormComponent } from './hrm-relation-code-form.component
 import { HrmCodeComponent } from './hrm-code.component';
 import { HrmRelationCodeComponent } from './hrm-relation-code.component';
 import { HrmCodeService } from './hrm-code.service';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzInputCheckboxComponent } from 'src/app/shared/nz-input-checkbox/nz-input-checkbox.component';
+import { NzInputNumberCustomComponent } from 'src/app/shared/nz-input-number-custom/nz-input-number-custom.component';
+import { NzPageHeaderCustomComponent } from 'src/app/shared/nz-page-header-custom/nz-page-header-custom.component';
 
 const nzModules = [
   NzLayoutModule,
@@ -66,18 +69,22 @@ const nzModules = [
     FormsModule,
     ReactiveFormsModule,
     nzModules,
-    AgGridModule,
-    SharedModule
-  ],
-  declarations: [    
-    HrmRelationCodeComponent,
-    HrmRelationCodeGridComponent,
-    HrmRelationCodeFormComponent,
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzCrudButtonGroupComponent,
+    NzInputCheckboxComponent,
+    NzInputNumberCustomComponent,
+    NzPageHeaderCustomComponent,
     HrmCodeGridComponent,
-    HrmTypeCodeFormComponent,
     HrmCodeTypeGridComponent,
+    HrmRelationCodeGridComponent
+  ],
+  declarations: [
+    HrmRelationCodeComponent,
+    HrmRelationCodeFormComponent,
+    HrmTypeCodeFormComponent,
     HrmCodeTypeFormComponent,
-    HrmCodeComponent    
+    HrmCodeComponent
   ],
   providers: [
     HrmCodeService

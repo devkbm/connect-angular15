@@ -4,6 +4,7 @@ import { AggridFunction } from 'src/app/core/grid/aggrid-function';
 import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 import { ResponseList } from 'src/app/core/model/response-list';
 import { HolidayService } from './holiday.service';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-holiday-grid',
@@ -16,7 +17,6 @@ import { HolidayService } from './holiday.service';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -41,7 +41,7 @@ export class HolidayGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

@@ -15,7 +15,7 @@
   <div nz-row nzGutter="8">
     <div nz-col nzSpan="12">
       <app-nz-input-text #resourceCode
-         formControlName="resourceId" itemId="resourceId"
+        formControlName="resourceId" itemId="resourceId"
         placeholder="리소스ID를 입력해주세요."
         [required]="true" [nzErrorTip]="errorTpl">리소스ID
       </app-nz-input-text>
@@ -23,7 +23,7 @@
 
     <div nz-col nzSpan="12">
       <app-nz-input-text
-         formControlName="resourceName" itemId="resourceName"
+        formControlName="resourceName" itemId="resourceName"
         [required]="true" [nzErrorTip]="errorTpl">리소스명
       </app-nz-input-text>
     </div>
@@ -33,7 +33,7 @@
   <div nz-row nzGutter="8">
     <div nz-col nzSpan="12">
       <app-nz-input-select
-         formControlName="resourceType" itemId="resourceType"
+        formControlName="resourceType" itemId="resourceType"
         [options]="resourceTypeList"
         [placeholder]="'리소스타입을 선택해주세요'" [nzErrorTip]="errorTpl" [required]="true">리소스타입
       </app-nz-input-select>

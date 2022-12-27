@@ -17,7 +17,6 @@ import { WorkGroup } from './workgroup.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">

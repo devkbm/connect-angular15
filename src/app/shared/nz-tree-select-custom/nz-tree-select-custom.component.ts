@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, Component, forwardRef, Input, TemplateRef } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormControl, FormGroup, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormsModule, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-tree-select-custom',
+  imports: [FormsModule, NzFormModule, NzTreeSelectModule],
   template: `
     <nz-form-item>
       <nz-form-label [nzFor]="itemId" [nzRequired]="required">

@@ -12,7 +12,6 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
@@ -48,8 +47,6 @@ const nzModules = [
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
 
-import { SharedModule } from 'src/app/shared/shared.module';
-
 import { BizCodeComponent } from './biz-code.component';
 import { BizCodeTypeFormComponent } from './biz-code-type-form.component';
 import { BizCodeTypeGridComponent } from './biz-code-type-grid.component';
@@ -57,6 +54,13 @@ import { BizCodeFormComponent } from './biz-code-form.component';
 import { BizCodeGridComponent } from './biz-code-grid.component';
 import { BizCodeTypeService } from './biz-code-type.service';
 import { BizCodeService } from './biz-code.service';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzInputCheckboxComponent } from 'src/app/shared/nz-input-checkbox/nz-input-checkbox.component';
+import { NzInputNumberCustomComponent } from 'src/app/shared/nz-input-number-custom/nz-input-number-custom.component';
+import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
+import { NzPageHeaderCustomComponent } from 'src/app/shared/nz-page-header-custom/nz-page-header-custom.component';
 
 @NgModule({
   imports: [
@@ -65,7 +69,13 @@ import { BizCodeService } from './biz-code.service';
     ReactiveFormsModule,
     nzModules,
     AgGridModule,
-    SharedModule
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzCrudButtonGroupComponent,
+    NzInputCheckboxComponent,
+    NzInputNumberCustomComponent,
+    NzInputSelectComponent,
+    NzPageHeaderCustomComponent
   ],
   declarations: [
     BizCodeTypeFormComponent,

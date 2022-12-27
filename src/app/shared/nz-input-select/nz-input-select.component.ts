@@ -1,10 +1,13 @@
-import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
-import { NzSelectModeType } from 'ng-zorro-antd/select';
+import { CommonModule } from '@angular/common';
+import { Self, Optional, Component, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModeType, NzSelectModule } from 'ng-zorro-antd/select';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-select',
+  imports: [CommonModule, FormsModule, NzFormModule, NzSelectModule],
   template: `
    <!--{{formField.errors | json}}-->
    <nz-form-item>

@@ -48,7 +48,7 @@
 
     <div nz-col nzSpan="6">
       <app-nz-input-select
-         formControlName="dutyResponsibilityCode" itemId="dutyResponsibilityCode"
+        formControlName="dutyResponsibilityCode" itemId="dutyResponsibilityCode"
         [options]="dutyResponsibilityCodeList" [opt_value]="'code'" [opt_label]="'codeName'"
         [placeholder]="'Please select'"
         [nzErrorTip]="errorTpl" [required]="true">직책
@@ -57,21 +57,21 @@
 
     <div nz-col nzSpan="6">
       <app-nz-input-date
-         formControlName="fromDate" itemId="fromDate"
+        formControlName="fromDate" itemId="fromDate"
         [required]="true" [nzErrorTip]="errorTpl">시작일
       </app-nz-input-date>
     </div>
 
     <div nz-col nzSpan="6">
       <app-nz-input-date
-         formControlName="toDate" itemId="toDate"
+        formControlName="toDate" itemId="toDate"
         [required]="false" [nzErrorTip]="errorTpl">종료일
       </app-nz-input-date>
     </div>
 
     <div nz-col nzSpan="2">
       <app-nz-input-checkbox
-         formControlName="isPayApply"
+        formControlName="isPayApply"
         checkboxText="Y"
         [required]="false">급여적용
       </app-nz-input-checkbox>

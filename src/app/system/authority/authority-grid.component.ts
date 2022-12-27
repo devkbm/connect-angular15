@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { AuthorityService } from './authority.service';
 import { Authority } from './authority.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-authority-grid',
@@ -19,7 +20,6 @@ import { Authority } from './authority.model';
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [getRowId]="getRowId"
-        [frameworkComponents]="frameworkComponents"
         (gridSize)="test($event)"
         (gridReady)="onGridReady($event)"
         (rowClicked)="rowClickedEvent($event)"
@@ -74,7 +74,7 @@ export class AuthorityGridComponent extends AggridFunction implements OnInit {
           width: 34,
           suppressSizeToFit: true,
           cellStyle: {'text-align': 'center', padding: '0px'},
-          cellRenderer: 'buttonRenderer',
+          cellRenderer: ButtonRendererComponent,
           cellRendererParams: {
             onClick: this.onEditButtonClick.bind(this),
             label: '',
@@ -84,7 +84,7 @@ export class AuthorityGridComponent extends AggridFunction implements OnInit {
         {
           headerName: 'No',
           headerClass: 'header-center',
-          valueGetter: 'node.rowIndex + 1',          
+          valueGetter: 'node.rowIndex + 1',
           suppressSizeToFit: true,
           width: 70,
           cellStyle: {'text-align': 'center'}
@@ -92,19 +92,19 @@ export class AuthorityGridComponent extends AggridFunction implements OnInit {
         {
           headerName: '권한ID',
           headerClass: 'header-center',
-          field: 'id',          
+          field: 'id',
           suppressSizeToFit: true,
           width: 150
         },
         {
           headerName: '권한코드',
-          field: 'authorityCode',          
+          field: 'authorityCode',
           suppressSizeToFit: true,
           width: 100
       },
         {
           headerName: '설명',
-          field: 'description'          
+          field: 'description'
         }
     ];
 

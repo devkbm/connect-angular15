@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { CommonCodeService } from './common-code.service';
 import { CommonCode } from './common-code.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-common-code-grid',
@@ -18,7 +19,6 @@ import { CommonCode } from './common-code.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -43,7 +43,7 @@ export class CommonCodeGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

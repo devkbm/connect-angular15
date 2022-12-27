@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzUploadChangeParam, NzUploadFile, NzUploadModule } from 'ng-zorro-antd/upload';
 import { GlobalProperty } from 'src/app/core/global-property';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-file-upload',
+  imports: [NzUploadModule, NzButtonModule],
   template: `
    <div class="clearfix" nz-row style="height: 100px">
       <nz-upload #upload class="upload-list-inline"

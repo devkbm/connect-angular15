@@ -1,8 +1,8 @@
-import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
-import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
-import { NzTimePickerComponent } from 'ng-zorro-antd/time-picker';
+import { Self, Optional, Component, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzDatePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzTimePickerComponent, NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 
 import { formatDate } from '@angular/common';
 
@@ -12,7 +12,9 @@ export enum TimeFormat {
 }
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-datetime',
+  imports: [FormsModule, NzFormModule, NzDatePickerModule, NzTimePickerModule],
   template: `
     <!--{{formField.errors | json}}-->
     <nz-form-item>
@@ -54,8 +56,7 @@ export enum TimeFormat {
 })
 export class NzInputDateTimeComponent implements ControlValueAccessor, OnInit, AfterViewInit {
 
-  @ViewChild(NzFormControlComponent, {static: true})
-  control!: NzFormControlComponent;
+  @ViewChild(NzFormControlComponent) control!: NzFormControlComponent;
   @ViewChild('date') dateElement?: NzDatePickerComponent;
   @ViewChild('time') timeElement?: NzTimePickerComponent;
 

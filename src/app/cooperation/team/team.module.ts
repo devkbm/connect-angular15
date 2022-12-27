@@ -15,10 +15,11 @@ const nzModules = [
   NzButtonModule
 ]
 
-import { SharedModule } from 'src/app/shared/shared.module';
-
 import { TeamComponent } from './team.component';
 import { TeamFormComponent } from './team-form.component';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import { TeamFormComponent } from './team-form.component';
     ReactiveFormsModule,
     nzModules,
     AgGridModule,
-    SharedModule
+    NzInputTextComponent,
+    NzCrudButtonGroupComponent,
+    NzInputSelectComponent
   ],
   declarations: [
     TeamFormComponent,

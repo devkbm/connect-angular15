@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { StaffLicenseService } from './staff-license.service';
 import { StaffLicense } from './staff-license.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-staff-license-grid',
@@ -18,7 +19,6 @@ import { StaffLicense } from './staff-license.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -45,7 +45,7 @@ export class StaffLicenseGridComponent extends AggridFunction implements OnInit,
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

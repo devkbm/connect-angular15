@@ -19,15 +19,6 @@ import { AppComponent } from './app.component';
 import { GlobalProperty } from './core/global-property';
 import { AppInjector } from './core/app/app-injector.service';
 
-import { BoardModule } from './cooperation/board/board.module';
-import { CommunicationModule } from './cooperation/communication/communication.module';
-import { SurveyModule } from './cooperation/survey/survey.module';
-import { WorkgroupModule } from './cooperation/workgroup/workgroup.module';
-import { StaffModule } from './hrm/staff/staff.module';
-import { TodoModule } from './cooperation/todo/todo.module';
-import { HrmCodeModule } from './hrm/hrm-code/hrm-code.module';
-import { DutyApplicationModule } from './hrm/duty-application/duty-application.module';
-import { TeamModule } from './cooperation/team/team.module';
 import { LoginModule } from './login/login.module';
 import { CoreModule } from './core/core.module';
 
@@ -63,17 +54,6 @@ const icons: IconDefinition[] = [ AccountBookFill, AlertOutline, AlertFill, Menu
     LoginModule,
     NzMenuModule,
     AppRoutingModule
-    /*
-    BoardModule,
-    CommunicationModule,
-    SurveyModule,
-    WorkgroupModule,
-    HrmCodeModule,
-    StaffModule,
-    TodoModule,
-    DutyApplicationModule,
-    TeamModule
-    */
   ],
   providers: [
     { provide: NZ_I18N, useValue: ko_KR },

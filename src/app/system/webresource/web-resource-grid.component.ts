@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { WebResourceService } from './web-resource.service';
 import { WebResource } from './web-resource.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-web-resource-grid',
@@ -19,7 +20,6 @@ import { WebResource } from './web-resource.model';
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [getRowId]="getRowId"
-        [frameworkComponents]="frameworkComponents"
         (gridReady)="onGridReady($event)"
         (rowClicked)="rowClickedEvent($event)"
         (rowDoubleClicked)="rowDbClicked($event)">
@@ -54,7 +54,7 @@ export class WebResourceGridComponent extends AggridFunction implements OnInit {
   @Output() rowDoubleClicked = new EventEmitter();
   @Output() editButtonClicked = new EventEmitter();
 
-  constructor(private programService: WebResourceService,
+  constructor(private service: WebResourceService,
               private appAlarmService: AppAlarmService) {
 
     super();
@@ -64,7 +64,7 @@ export class WebResourceGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -104,7 +104,7 @@ export class WebResourceGridComponent extends AggridFunction implements OnInit {
 
   public getList(params?: any): void {
     this.isLoading = true;
-    this.programService
+    this.service
         .getList(params)
         .subscribe(
           (model: ResponseList<WebResource>) => {

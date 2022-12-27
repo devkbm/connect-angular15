@@ -1,9 +1,15 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { MenuBreadCrumb, SessionManager } from 'src/app/core/session-manager';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
+// NzBreadCrumbModule
 @Component({
+  standalone: true,
   selector: 'app-nz-page-header-custom',
+  imports: [CommonModule, NzPageHeaderModule, NzBreadCrumbModule, NzIconModule],
   template: `
    <nz-page-header (nzBack)="goBack()" nzBackIcon [nzTitle]="title" [nzSubtitle]="subtitle">
     <nz-breadcrumb nz-page-header-breadcrumb nzSeparator=">" >

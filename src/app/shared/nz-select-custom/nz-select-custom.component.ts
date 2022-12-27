@@ -1,9 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, forwardRef, Input, TemplateRef } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormControl, FormGroup, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NzSelectModeType } from 'ng-zorro-antd/select';
+import { AbstractControl, ControlValueAccessor, FormsModule, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModeType, NzSelectModule } from 'ng-zorro-antd/select';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-select-custom',
+  imports: [CommonModule, FormsModule, NzFormModule, NzSelectModule],
   templateUrl: './nz-select-custom.component.html',
   styleUrls: ['./nz-select-custom.component.css'],
   changeDetection: ChangeDetectionStrategy.Default,

@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomHttpInterceptor } from '../../core/interceptor/custom-http-interceptor';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { CustomHttpInterceptor } from 'src/app/core/interceptor/custom-http-interceptor';
 
 /* NG-ZORRO */
 import { NZ_I18N, ko_KR } from 'ng-zorro-antd/i18n';
@@ -27,8 +26,6 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
-import { ButtonRendererComponent } from '../../core/grid/renderer/button-renderer.component';
-import { CheckboxRendererComponent } from '../../core/grid/renderer/checkbox-renderer.component';
 
 /* Inner Component */
 import { DeptService } from './dept.service';
@@ -37,6 +34,11 @@ import { DeptFormComponent } from './dept-form.component';
 import { DeptTreeComponent } from './dept-tree.component';
 import { DeptSelectComponent } from './dept-select.component';
 import { CheckableDeptTreeComponent } from './checkable-dept-tree.component';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzInputDateComponent } from 'src/app/shared/nz-input-date/nz-input-date.component';
+import { NzInputNumberCustomComponent } from 'src/app/shared/nz-input-number-custom/nz-input-number-custom.component';
+import { NzPageHeaderCustomComponent } from 'src/app/shared/nz-page-header-custom/nz-page-header-custom.component';
 
 
 
@@ -69,7 +71,11 @@ const nzModules = [
     HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'}),
     AgGridModule,
     nzModules,
-    SharedModule
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzInputDateComponent,
+    NzInputNumberCustomComponent,
+    NzPageHeaderCustomComponent
   ],
   declarations: [
     DeptFormComponent,

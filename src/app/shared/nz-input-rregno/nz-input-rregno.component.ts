@@ -1,9 +1,18 @@
 import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+
+import { NgxMaskDirective, provideNgxMask, IConfig } from 'ngx-mask'
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-rregno',
+  imports: [FormsModule, NzFormModule, NzInputModule, NgxMaskDirective],
+  providers: [
+    provideNgxMask()
+  ],
   template: `
     <nz-form-item>
       <nz-form-label [nzFor]="itemId" [nzRequired]="required">

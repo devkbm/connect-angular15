@@ -1,7 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-crud-button-group',
+  imports: [CommonModule, NzButtonModule, NzDividerModule, NzIconModule, NzPopconfirmModule],
   template:`
     <nz-button-group>
       <div *ngIf="searchVisible">

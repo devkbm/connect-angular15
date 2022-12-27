@@ -1,9 +1,12 @@
-import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { Self, Optional, Component, Input, TemplateRef, ViewChild, OnInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-number-custom',
+  imports: [FormsModule, NzFormModule, NzInputNumberModule],
   template: `
     <!--{{formField.errors | json}}-->
     <nz-form-item>

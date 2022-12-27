@@ -6,9 +6,16 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { HrmCodeService } from './hrm-code.service';
 import { HrmCode } from './hrm-code.model';
+import { CommonModule } from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular';
+
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
+import { CheckboxRendererComponent } from 'src/app/core/grid/renderer/checkbox-renderer.component';
 
 @Component({
+  standalone: true,
   selector: 'app-hrm-code-grid',
+  imports: [CommonModule, AgGridModule],
   template: `
     <ag-grid-angular
         [ngStyle]="style"
@@ -18,7 +25,6 @@ import { HrmCode } from './hrm-code.model';
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [getRowId]="getRowId"
-        [frameworkComponents]="frameworkComponents"
         (gridReady)="onGridReady($event)"
         (selectionChanged)="selectionChanged($event)"
         (rowDoubleClicked)="rowDbClicked($event)">
@@ -45,7 +51,7 @@ export class HrmCodeGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -66,7 +72,7 @@ export class HrmCodeGridComponent extends AggridFunction implements OnInit {
         field: 'useYn',
         width: 80,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'checkboxRenderer',
+        cellRenderer: CheckboxRendererComponent,
         cellRendererParams: {
           label: '',
           disabled: true

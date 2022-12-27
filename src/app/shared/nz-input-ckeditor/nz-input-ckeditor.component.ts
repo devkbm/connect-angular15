@@ -1,8 +1,8 @@
-import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit, HostBinding, AfterViewInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { Self, Optional, Component, Input, TemplateRef, ViewChild, OnInit, HostBinding, AfterViewInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
 
-import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { ChangeEvent, CKEditorComponent, CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import * as Editor from 'ckeditor5/build/ckeditor';
 //import '@ckeditor/ckeditor5-build-classic/build/translations/ko';
@@ -15,7 +15,9 @@ import { MyUploadAdapter } from './my-upload-adapter';
 // https://ckeditor.com/ckeditor-5/online-builder/
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-ckeditor',
+  imports: [FormsModule, NzFormModule, CKEditorModule],
   template: `
    <nz-form-item>
       <nz-form-label [nzFor]="itemId" [nzRequired]="required">

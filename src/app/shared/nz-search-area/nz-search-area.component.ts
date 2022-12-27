@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-search-area',
+  imports: [NzGridModule],
   template: `
     <div nz-row class="search-area">
       <ng-content></ng-content>

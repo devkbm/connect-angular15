@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpInterceptor } from '../../core/interceptor/custom-http-interceptor';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 /* NG-ZORRO */
 import { NZ_I18N, ko_KR } from 'ng-zorro-antd/i18n';
@@ -44,6 +43,12 @@ import { DataDomainFormComponent } from './data-domain-form.component';
 import { WordFormComponent } from './word-form.component';
 import { DataDomainGridComponent } from './data-domain-grid.component';
 import { WordGridComponent } from './word-grid.component';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
+import { NzPageHeaderCustomComponent } from 'src/app/shared/nz-page-header-custom/nz-page-header-custom.component';
+import { NzSearchAreaComponent } from 'src/app/shared/nz-search-area/nz-search-area.component';
 
 const nzModules = [
   NzLayoutModule,
@@ -81,7 +86,12 @@ const nzModules = [
     HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'}),
     AgGridModule,
     nzModules,
-    SharedModule
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzCrudButtonGroupComponent,
+    NzInputSelectComponent,
+    NzPageHeaderCustomComponent,
+    NzSearchAreaComponent
   ],
   declarations: [
     TermGridComponent,

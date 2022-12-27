@@ -1,9 +1,12 @@
-import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { Self, Optional, Component, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-dept-tree-select',
+  imports: [FormsModule, NzFormModule, NzTreeSelectModule],
   template: `
    <nz-form-item>
       <nz-form-label [nzFor]="itemId" [nzRequired]="required">

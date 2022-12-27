@@ -2,62 +2,60 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomHttpInterceptor } from '../../core/interceptor/custom-http-interceptor';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { CustomHttpInterceptor } from 'src/app/core/interceptor/custom-http-interceptor';
 
 /* NG-ZORRO */
 import { NZ_I18N, ko_KR } from 'ng-zorro-antd/i18n';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
 
 /* Inner Component */
-import { AuthorityFormComponent } from './authority-form.component';
-import { AuthorityGridComponent } from './authority-grid.component';
 import { AuthorityComponent } from './authority.component';
 import { AuthorityService } from './authority.service';
-import { CalendarModule } from 'src/app/shared/calendar/calendar.module';
+import { AuthorityFormComponent } from './authority-form.component';
+import { AuthorityGridComponent } from './authority-grid.component';
 
-const angularModules = [
-  CommonModule,
-  FormsModule,
-  ReactiveFormsModule,
-  HttpClientModule,
-  HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'})
-]
-
-const nzModules = [
-  NzButtonModule,
-  NzPopconfirmModule,
-  NzIconModule,
-  NzGridModule,
-  NzSelectModule,
-  NzPageHeaderModule,
-  NzInputModule,
-  NzDrawerModule,
-  NzDividerModule,
-  NzBreadCrumbModule,
-  NzSpinModule
-]
+/* Shared Component */
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzButtonsComponent } from 'src/app/shared/nz-buttons/nz-buttons.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzPageHeaderCustomComponent } from 'src/app/shared/nz-page-header-custom/nz-page-header-custom.component';
+import { NzSearchAreaComponent } from 'src/app/shared/nz-search-area/nz-search-area.component';
 
 @NgModule({
   imports: [
-    angularModules,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'}),
     AgGridModule,
-    nzModules,
-    SharedModule,
-    CalendarModule
+    /* NG-ZORRO  */
+    NzButtonModule,
+    NzPopconfirmModule,
+    NzGridModule,
+    NzSelectModule,
+    NzInputModule,
+    NzDrawerModule,
+    NzDividerModule,
+    NzSpinModule,
+    /* Shared Component */
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzButtonsComponent,
+    NzCrudButtonGroupComponent,
+    NzPageHeaderCustomComponent,
+    NzSearchAreaComponent
   ],
   declarations: [
     AuthorityFormComponent,

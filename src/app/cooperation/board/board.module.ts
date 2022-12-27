@@ -30,7 +30,14 @@ import { BoardComponent } from './board.component';
 import { ArticleGridComponent } from './component/article-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ArticleViewComponent } from './component/article-view.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzFileUploadComponent } from 'src/app/shared/nz-file-upload/nz-file-upload.component';
+import { NzInputCkeditorComponent } from 'src/app/shared/nz-input-ckeditor/nz-input-ckeditor.component';
+import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
+import { NzInputTreeSelectComponent } from 'src/app/shared/nz-input-tree-select/nz-input-tree-select.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 const nzModules = [
   NzButtonModule,
@@ -56,7 +63,13 @@ const nzModules = [
     nzModules,
     AgGridModule,
     CKEditorModule,
-    SharedModule
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzCrudButtonGroupComponent,
+    NzFileUploadComponent,
+    NzInputCkeditorComponent,
+    NzInputSelectComponent,
+    NzInputTreeSelectComponent
   ],
   declarations: [
     ArticleViewComponent,
@@ -69,7 +82,8 @@ const nzModules = [
   providers: [
     { provide: NZ_I18N, useValue: ko_KR },
     BoardService,
-    NzModalService
+    NzModalService,
+    NzMessageService
   ],
   exports: [
     BoardFormComponent,

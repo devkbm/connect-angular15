@@ -54,8 +54,6 @@ const nzModules = [
 
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
-/* SHARE MODULE */
-import { SharedModule } from 'src/app/shared/shared.module';
 
 import { StaffRegistFormComponent } from './staff-regist-form.component';
 import { StaffAppointmentRecordFormComponent } from './staff-appointment-record/staff-appointment-record-form.component';
@@ -75,6 +73,18 @@ import { StaffSchoolCareerFormComponent } from './staff-school-career/staff-scho
 import { StaffSchoolCareerGridComponent } from './staff-school-career/staff-school-career-grid.component';
 import { StaffCardComponent } from './staff-card/staff-card.component';
 import { StaffCardListComponent } from './staff-card/staff-card-list.component';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzDeptTreeSelectComponent } from 'src/app/shared/nz-dept-tree-select/nz-dept-tree-select.component';
+import { NzInputCheckboxComponent } from 'src/app/shared/nz-input-checkbox/nz-input-checkbox.component';
+import { NzInputDateComponent } from 'src/app/shared/nz-input-date/nz-input-date.component';
+import { NzInputNumberCustomComponent } from 'src/app/shared/nz-input-number-custom/nz-input-number-custom.component';
+import { NzInputRadioGroupComponent } from 'src/app/shared/nz-input-radio-group/nz-input-radio-group.component';
+import { NzInputRregnoComponent } from 'src/app/shared/nz-input-rregno/nz-input-rregno.component';
+import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
+import { NzListRoadAddressComponent } from 'src/app/shared/nz-list-road-address/nz-list-road-address.component';
+import { NzPageHeaderCustomComponent } from 'src/app/shared/nz-page-header-custom/nz-page-header-custom.component';
 
 
 
@@ -85,7 +95,18 @@ import { StaffCardListComponent } from './staff-card/staff-card-list.component';
     ReactiveFormsModule,
     nzModules,
     AgGridModule,
-    SharedModule
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzCrudButtonGroupComponent,
+    NzDeptTreeSelectComponent,
+    NzInputCheckboxComponent,
+    NzInputDateComponent,
+    NzInputNumberCustomComponent,
+    NzInputRadioGroupComponent,
+    NzInputRregnoComponent,
+    NzInputSelectComponent,
+    NzListRoadAddressComponent,
+    NzPageHeaderCustomComponent
   ],
   declarations: [
     StaffRegistFormComponent,

@@ -1,11 +1,14 @@
 import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 // https://zefoy.github.io/ngx-color-picker/
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-color-picker',
+  imports: [FormsModule, NzFormModule,ColorPickerModule],
   template: `
     <!--{{formField.errors | json}}-->
     <nz-form-item>
@@ -34,7 +37,7 @@ import { NzFormControlComponent } from 'ng-zorro-antd/form';
 })
 export class NzInputColorPickerComponent implements ControlValueAccessor, OnInit {
 
-  @ViewChild(NzFormControlComponent, {static: true})
+  @ViewChild(NzFormControlComponent)
   control!: NzFormControlComponent;
 
   @ViewChild('input') element?: ElementRef;
@@ -62,7 +65,7 @@ export class NzInputColorPickerComponent implements ControlValueAccessor, OnInit
   }
 
   ngOnInit(): void {
-    this.control.nzValidateStatus = this.ngControl.control as AbstractControl;
+    //this.control.nzValidateStatus = this.ngControl.control as AbstractControl;
   }
 
   writeValue(obj: any): void {

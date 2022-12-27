@@ -14,7 +14,7 @@
     <div nz-col nzSpan="12">
       <!--작업그룹 Id 필드-->
       <app-nz-input-text
-         formControlName="workGroupId"
+        formControlName="workGroupId"
         itemId="workGroupId"
         placeholder=""
         [required]="true" [nzErrorTip]="errorTpl">작업그룹 Id
@@ -24,7 +24,7 @@
     <div nz-col nzSpan="12">
       <!--작업그룹 Id 필드-->
       <app-nz-input-text #workGroupName
-         formControlName="workGroupName"
+        formControlName="workGroupName"
         itemId="workGroupName"
         placeholder="작업그룹명을 입력해주세요."
         [required]="true" [nzErrorTip]="errorTpl">작업그룹명
@@ -51,7 +51,7 @@
       -->
 
       <app-nz-input-color-picker
-         formControlName="color"
+        formControlName="color"
         [itemId]="'color'"
         placeholder="색상을 입력해주세요."
         [required]="false" [nzErrorTip]="errorTpl">색상
@@ -62,7 +62,7 @@
       <!--작업그룹 Id 필드-->
       <app-nz-input-select
         [mode]="'multiple'"
-         formControlName="memberList"
+        formControlName="memberList"
         [itemId]="'memberList'"
         [options]="memberList" [opt_value]="'userId'" [opt_label]="'name'" [mode]="'tags'"
         [placeholder]="'Please select'"

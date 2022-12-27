@@ -11,7 +11,9 @@ import { ResponseList } from '../../core/model/response-list';
 import { DeptHierarchy } from './dept-hierarchy.model';
 import { GlobalProperty } from 'src/app/core/global-property';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DeptHierarchyService extends DataService {
 
   constructor(http: HttpClient, tokenExtractor: HttpXsrfTokenExtractor) {

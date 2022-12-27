@@ -1,6 +1,7 @@
 import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 /*
 ,
@@ -17,7 +18,9 @@ import { NzFormControlComponent } from 'ng-zorro-antd/form';
 */
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-text',
+  imports: [FormsModule, NzFormModule, NzInputModule],
   template: `
     <nz-form-item>
       <nz-form-label [nzFor]="itemId" [nzRequired]="required">

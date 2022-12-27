@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 export interface ButtonTemplate {
   text: string;
@@ -45,7 +50,9 @@ export interface ButtonTemplate {
   }];
  */
 @Component({
+  standalone: true,
   selector: 'app-nz-buttons',
+  imports: [CommonModule, NzButtonModule, NzIconModule, NzPopconfirmModule, NzDividerModule],
   template: `
     <div *ngFor="let btn of buttons; let i = index" class="button-group">
       <!-- nz-popconfirm을 사용하지 않을 경우 -->

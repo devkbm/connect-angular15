@@ -5,9 +5,14 @@ import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 import { ResponseList } from 'src/app/core/model/response-list';
 import { DutyApplicationService } from './duty-application.service';
 import { DutyApplication } from './duty-application.model';
+import { AgGridModule } from 'ag-grid-angular';
+import { CommonModule } from '@angular/common';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
+  standalone: true,
   selector: 'app-duty-application-grid',
+  imports: [CommonModule, AgGridModule],
   template: `
     <ag-grid-angular
       [ngStyle]="style"
@@ -17,7 +22,6 @@ import { DutyApplication } from './duty-application.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -44,7 +48,7 @@ export class DutyApplicationGridComponent extends AggridFunction implements OnIn
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

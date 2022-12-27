@@ -2,7 +2,9 @@ import { EventEmitter, HostListener, Injectable, Output } from '@angular/core';
 import { ButtonRendererComponent } from './renderer/button-renderer.component';
 import { CheckboxRendererComponent } from './renderer/checkbox-renderer.component';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AggridFunction {
 
   @Output() deleteEvent = new EventEmitter();

@@ -17,7 +17,6 @@ import { Staff } from './staff.model';
       [columnDefs]="columnDefs"
       [getRowId]="getRowId"
       [defaultColDef]="defaultColDef"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedFunc($event)"
       (rowDoubleClicked)="rowDbClickedFunc($event)">
@@ -79,7 +78,7 @@ export class StaffGridComponent extends AggridFunction implements OnInit {
 
   getList(params?: any): void {
     this.service
-        .getStaffList(params)        
+        .getStaffList(params)
         .subscribe(
           (model: ResponseList<Staff>) => {
             if (model.total > 0) {

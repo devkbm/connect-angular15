@@ -12,7 +12,6 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
@@ -28,7 +27,6 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { WorkGroupService } from './work-group/workgroup.service';
 
-import { SharedModule } from 'src/app/shared/shared.module';
 import { CalendarModule } from 'src/app/shared/calendar/calendar.module';
 
 import { WorkCalendarComponent } from './calendar/work-calendar.component';
@@ -37,6 +35,13 @@ import { WorkGroupFormComponent } from './work-group/workgroup-form.component';
 import { WorkScheduleFormComponent } from './schedule/work-schedule-form.component';
 import { MyWorkGroupGridComponent } from './work-group/myworkgroup-grid.component';
 import { WorkScheduleService } from './schedule/work-schedule.service';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
+import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
+import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
+import { NzInputCheckboxComponent } from 'src/app/shared/nz-input-checkbox/nz-input-checkbox.component';
+import { NzInputColorPickerComponent } from 'src/app/shared/nz-input-color-picker/nz-input-color-picker.component';
+import { NzInputDateTimeComponent } from 'src/app/shared/nz-input-datetime/nz-input-datetime.component';
+import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
 
 
 const nzModules = [
@@ -66,7 +71,13 @@ const nzModules = [
     AgGridModule,
     CKEditorModule,
     ColorPickerModule,
-    SharedModule,
+    NzInputTextComponent,
+    NzInputTextareaComponent,
+    NzCrudButtonGroupComponent,
+    NzInputCheckboxComponent,
+    NzInputColorPickerComponent,
+    NzInputDateTimeComponent,
+    NzInputSelectComponent,
     CalendarModule
   ],
   declarations: [

@@ -1,14 +1,17 @@
 import { Component, Self, Optional, Input, TemplateRef, OnInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormControl, FormGroup, NgModel, NgControl } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
-import { NzSelectModeType } from 'ng-zorro-antd/select';
+import { NzSelectModeType, NzSelectModule } from 'ng-zorro-antd/select';
 
 import { ResponseList } from 'src/app/core/model/response-list';
 import { NzInputDeptSelectModel } from './nz-input-dept-select.model';
 import { NzInputDeptSelectService } from './nz-input-dept-select.service';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-dept-select',
+  imports: [FormsModule, NzFormModule, NzSelectModule],
   template: `
    <nz-form-item>
     <nz-form-label [nzFor]="itemId" [nzRequired]="required">

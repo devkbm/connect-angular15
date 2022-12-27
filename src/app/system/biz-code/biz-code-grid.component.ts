@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { BizCode } from './biz-code.model';
 import { BizCodeService } from './biz-code.service';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-biz-code-grid',
@@ -18,7 +19,6 @@ import { BizCodeService } from './biz-code.service';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedFunc($event)"
       (rowDoubleClicked)="rowDoubleClickedFunc($event)">
@@ -28,7 +28,7 @@ import { BizCodeService } from './biz-code.service';
 })
 export class BizCodeGridComponent extends AggridFunction implements OnInit {
 
-  _list: BizCode[] = [];  
+  _list: BizCode[] = [];
 
   @Output() rowClickedEvent = new EventEmitter();
   @Output() rowDoubleClickedEvent = new EventEmitter();
@@ -44,7 +44,7 @@ export class BizCodeGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -57,7 +57,7 @@ export class BizCodeGridComponent extends AggridFunction implements OnInit {
         width: 70,
         cellStyle: {'text-align': 'center'}
       },
-      { headerName: '분류ID',       field: 'typeId',        width: 100 },      
+      { headerName: '분류ID',       field: 'typeId',        width: 100 },
       { headerName: '코드',         field: 'code',          width: 200 },
       { headerName: '코드명',       field: 'codeName',      width: 200 },
       { headerName: '사용여부',     field: 'useYn',         width: 200 },
@@ -73,8 +73,8 @@ export class BizCodeGridComponent extends AggridFunction implements OnInit {
   ngOnInit(): void {
   }
 
-  getList(typeId: string): void {    
-    this.service        
+  getList(typeId: string): void {
+    this.service
         .getList(typeId)
         .subscribe(
           (model: ResponseList<BizCode>) => {
@@ -86,7 +86,7 @@ export class BizCodeGridComponent extends AggridFunction implements OnInit {
               this.appAlarmService.changeMessage(model.message);
           }
         );
-    
+
   }
 
   rowClickedFunc(event: any): void {

@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const token = this.route.snapshot.params['id'];
 
-    console.log(token);
-
     if (token != null) {
       sessionStorage.setItem('token', token);
 

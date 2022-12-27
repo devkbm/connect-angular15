@@ -1,10 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { RoadAddress, RoadAddressJuso, RoadAddressResult } from './road-address.model';
 import { RoadAddressService } from './road-address.service';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-list-road-address',
+  imports: [CommonModule, FormsModule, NzInputModule, NzListModule, NzPaginationModule],
+  providers: [NzMessageService],
   template: `
     <div class="container" [style.height]="height">
       <ng-template #suffixIconButton>

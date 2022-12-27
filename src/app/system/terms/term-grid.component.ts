@@ -6,6 +6,7 @@ import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
 import { TermService } from './term.service';
 import { Term } from './term.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 
 @Component({
@@ -19,7 +20,6 @@ import { Term } from './term.model';
       [columnDefs]="columnDefs"
       [getRowId]="getRowId"
       [defaultColDef]="defaultColDef"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedFunc($event)"
       (rowDoubleClicked)="rowDbClickedFunc($event)">
@@ -46,7 +46,7 @@ export class TermGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -76,7 +76,7 @@ export class TermGridComponent extends AggridFunction implements OnInit {
 
   ngOnInit() {
     this.getList();
-  }  
+  }
 
   getList(params?: any): void {
     this.termService
@@ -98,7 +98,7 @@ export class TermGridComponent extends AggridFunction implements OnInit {
     this.rowClickedEvent.emit(selectedRows[0]);
   }
 
-  onEditButtonClick(event: any) {        
+  onEditButtonClick(event: any) {
     this.editButtonClickedEvent.emit(event.rowData);
   }
 

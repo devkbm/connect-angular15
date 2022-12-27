@@ -5,6 +5,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { StaffSchoolCareerService } from './staff-school-career.service';
 import { StaffSchoolCareer } from './staff-school-career.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-staff-school-career-grid',
@@ -17,7 +18,6 @@ import { StaffSchoolCareer } from './staff-school-career.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -44,7 +44,7 @@ export class StaffSchoolCareerGridComponent extends AggridFunction implements On
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

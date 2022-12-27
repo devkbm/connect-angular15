@@ -1,9 +1,12 @@
-import { Self, Optional, Component, ElementRef, Input, TemplateRef, ViewChild, OnInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormGroup, NgModel, NgControl } from '@angular/forms';
-import { NzFormControlComponent } from 'ng-zorro-antd/form';
+import { Self, Optional, Component, Input, TemplateRef, ViewChild, OnInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgModel, NgControl, FormsModule } from '@angular/forms';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
 
 @Component({
+  standalone: true,
   selector: 'app-nz-input-checkbox',
+  imports: [FormsModule, NzFormModule, NzCheckboxModule],
   template: `
    <nz-form-item>
       <nz-form-label [nzFor]="itemId" [nzRequired]="required">

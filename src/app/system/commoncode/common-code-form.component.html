@@ -17,7 +17,7 @@
     <!--시스템구분코드 필드-->
     <div nz-col nzSpan="4">
       <app-nz-input-select
-         formControlName="systemTypeCode" itemId="systemTypeCode"
+        formControlName="systemTypeCode" itemId="systemTypeCode"
         [options]="systemTypeCodeList" [opt_value]="'value'" [opt_label]="'label'"
         [placeholder]="'Please select'"
         [nzErrorTip]="errorTpl" [required]="true">시스템구분코드
@@ -27,7 +27,7 @@
     <!--상위 공통코드 필드-->
     <div nz-col nzSpan="8">
       <app-nz-input-tree-select
-         formControlName="parentId"
+        formControlName="parentId"
         [nodes]="nodeItems"
         [placeholder]="'Please select'" [nzErrorTip]="errorTpl" [required]="false">상위 공통코드
       </app-nz-input-tree-select>

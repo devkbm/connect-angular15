@@ -6,9 +6,16 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { HrmCodeTypeService } from './hrm-code-type.service';
 import { HrmType } from './hrm-type.model';
+import { CommonModule } from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular';
+
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
+
 
 @Component({
+  standalone: true,
   selector: 'app-hrm-code-type-grid',
+  imports: [CommonModule, AgGridModule],
   template: `
     <ag-grid-angular
         [ngStyle]="style"
@@ -18,7 +25,6 @@ import { HrmType } from './hrm-type.model';
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [getRowId]="getRowId"
-        [frameworkComponents]="frameworkComponents"
         (gridReady)="onGridReady($event)"
         (selectionChanged)="selectionChanged($event)"
         (rowDoubleClicked)="rowDbClicked($event)">
@@ -43,7 +49,7 @@ export class HrmCodeTypeGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

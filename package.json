@@ -31,7 +31,7 @@
     "file-saver": "^2.0.5",
     "ng-zorro-antd": "^15.0.0",
     "ngx-color-picker": "^13.0.0",
-    "ngx-mask": "^15.0.0",
+    "ngx-mask": "^15.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

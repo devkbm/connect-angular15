@@ -6,6 +6,8 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { UserService } from './user.service';
 import { User } from './user.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
+import { CheckboxRendererComponent } from 'src/app/core/grid/renderer/checkbox-renderer.component';
 
 @Component({
   selector: 'app-user-grid',
@@ -18,7 +20,6 @@ import { User } from './user.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedEvent($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -48,7 +49,7 @@ export class UserGridComponent extends AggridFunction implements OnInit {
           headerName: '',
           width: 34,
           cellStyle: {'text-align': 'center', padding: '0px'},
-          cellRenderer: 'buttonRenderer',
+          cellRenderer: ButtonRendererComponent,
           cellRendererParams: {
             onClick: this.onEditButtonClick.bind(this),
             label: '',
@@ -71,7 +72,7 @@ export class UserGridComponent extends AggridFunction implements OnInit {
         field: 'enabled',
         width: 80,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'checkboxRenderer',
+        cellRenderer: CheckboxRendererComponent,
         cellRendererParams: {
           label: '',
           disabled: true
@@ -82,7 +83,7 @@ export class UserGridComponent extends AggridFunction implements OnInit {
         field: 'accountNonLocked',
         width: 120,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'checkboxRenderer',
+        cellRenderer: CheckboxRendererComponent,
         cellRendererParams: {
           label: '',
           disabled: true
@@ -93,7 +94,7 @@ export class UserGridComponent extends AggridFunction implements OnInit {
         field: 'accountNonExpired',
         width: 120,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'checkboxRenderer',
+        cellRenderer:CheckboxRendererComponent,
         cellRendererParams: {
           label: '',
           disabled: true
@@ -104,7 +105,7 @@ export class UserGridComponent extends AggridFunction implements OnInit {
         field: 'credentialsNonExpired',
         width: 120,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'checkboxRenderer',
+        cellRenderer: CheckboxRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

@@ -19,7 +19,7 @@ import { BizCodeComponent } from '../system/biz-code/biz-code.component';
 
 const layoutroutes: Routes = [
   {
-    path: '', component: AppLayoutComponent, canActivateChild: [AuthGuardService],
+    path: '', component: AppLayoutComponent, //canActivateChild: [AuthGuardService],
     children: [
       /* 공통 시스템 */
       {path: 'user',          component: UserComponent},

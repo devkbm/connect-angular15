@@ -6,10 +6,15 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { HrmCodeService } from './hrm-code.service';
 import { HrmRelationCode } from './hrm-relation-code';
+import { CommonModule } from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 
 @Component({
+  standalone: true,
   selector: 'app-hrm-relation-code-grid',
+  imports: [CommonModule, AgGridModule],
   template:`
     <ag-grid-angular
       [ngStyle]="style"
@@ -19,7 +24,6 @@ import { HrmRelationCode } from './hrm-relation-code';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -52,7 +56,7 @@ export class HrmRelationCodeGridComponent extends AggridFunction implements OnIn
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

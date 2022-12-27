@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 import { StaffAppointmentRecordService } from './staff-appointment-record.service';
 
 import { StaffAppointmentRecord } from './staff-appointment-record.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-staff-appointment-record-grid',
@@ -18,7 +19,6 @@ import { StaffAppointmentRecord } from './staff-appointment-record.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="selectionChanged($event)"
       (rowDoubleClicked)="rowDbClicked($event)">
@@ -44,7 +44,7 @@ export class StaffAppointmentRecordGridComponent extends AggridFunction implemen
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

@@ -6,6 +6,7 @@ import { ResponseList } from 'src/app/core/model/response-list';
 
 import { BizCodeType } from './biz-code-type.model';
 import { BizCodeTypeService } from './biz-code-type.service';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-biz-type-grid',
@@ -18,7 +19,6 @@ import { BizCodeTypeService } from './biz-code-type.service';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedFunc($event)"
       (rowDoubleClicked)="rowDoubleClickedFunc($event)">
@@ -43,7 +43,7 @@ export class BizCodeTypeGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -72,8 +72,8 @@ export class BizCodeTypeGridComponent extends AggridFunction implements OnInit {
     this.getList();
   }
 
-  getList(): void {    
-    this.service        
+  getList(): void {
+    this.service
         .getList()
         .subscribe(
           (model: ResponseList<BizCodeType>) => {
@@ -85,7 +85,7 @@ export class BizCodeTypeGridComponent extends AggridFunction implements OnInit {
             this.appAlarmService.changeMessage(model.message);
           }
         );
-    
+
   }
 
   rowClickedFunc(event: any): void {

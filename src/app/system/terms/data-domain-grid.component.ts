@@ -6,6 +6,7 @@ import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
 import { DataDomainService } from './data-domain.service';
 import { DataDomain } from './data-domain.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-data-domain-grid',
@@ -18,7 +19,6 @@ import { DataDomain } from './data-domain.model';
       [columnDefs]="columnDefs"
       [getRowId]="getRowId"
       [defaultColDef]="defaultColDef"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedFunc($event)"
       (rowDoubleClicked)="rowDbClickedFunc($event)">
@@ -46,7 +46,7 @@ export class DataDomainGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -61,8 +61,8 @@ export class DataDomainGridComponent extends AggridFunction implements OnInit {
       },
       /*{headerName: '도메인ID',      field: 'domainId',      width: 100 },*/
       {headerName: '데이터베이스',  field: 'database',      width: 100 },
-      {headerName: '도메인',        field: 'domainName',    width: 100 },      
-      {headerName: '데이터타입',    field: 'dataType',      width: 150 },      
+      {headerName: '도메인',        field: 'domainName',    width: 100 },
+      {headerName: '데이터타입',    field: 'dataType',      width: 150 },
       {headerName: '비고',          field: 'comment',       width: 400 }
     ];
 
@@ -73,11 +73,11 @@ export class DataDomainGridComponent extends AggridFunction implements OnInit {
 
   ngOnInit() {
     this.getList();
-  }  
+  }
 
   getList(params?: any) {
     this.service
-        .getList()        
+        .getList()
         .subscribe(
           (model: ResponseList<DataDomain>) => {
             if (model.total > 0) {

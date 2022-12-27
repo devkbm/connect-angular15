@@ -8,6 +8,7 @@ import { FirstDataRenderedEvent, GridSizeChangedEvent, RowClickedEvent, RowDoubl
 
 import { BoardService } from './board.service';
 import { Article } from './article.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 
 @Component({
@@ -21,7 +22,6 @@ import { Article } from './article.model';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [getRowId]="getRowId"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (firstDataRendered)="onFirstDataRendered($event)"
       (gridSizeChanged)="onGridSizeChanged($event)"
@@ -84,7 +84,7 @@ export class ArticleGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', 'padding': '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',

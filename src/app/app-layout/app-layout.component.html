@@ -55,7 +55,7 @@
         class="sidemenugroup"
         nzShowSearch
         [(ngModel)]="menuGroupInfo.selectedId"
-        (ngModelChange)="selectMenuGroup($event)">
+        (ngModelChange)="selectMenuGroup($event, null)">
           <nz-option
             *ngFor="let menuGroup of menuGroupInfo.list"
             [nzValue]="menuGroup.value"

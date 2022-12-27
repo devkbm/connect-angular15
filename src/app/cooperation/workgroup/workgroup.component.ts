@@ -53,9 +53,7 @@ export class WorkgroupComponent implements OnInit {
   }
 
   openScheduleDrawer() {
-    console.log('openScheduleDrawer: start');
     this.scheduleDrawerVisible = true;
-    console.log('openScheduleDrawer: end');
   }
 
   closeScheduleDrawer() {

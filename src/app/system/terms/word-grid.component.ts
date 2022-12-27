@@ -6,6 +6,7 @@ import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
 import { WordService } from './word.service';
 import { Word } from './word.model';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   selector: 'app-word-grid',
@@ -18,7 +19,6 @@ import { Word } from './word.model';
       [columnDefs]="columnDefs"
       [getRowId]="getRowId"
       [defaultColDef]="defaultColDef"
-      [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
       (rowClicked)="rowClickedFunc($event)"
       (rowDoubleClicked)="rowDbClickedFunc($event)">
@@ -46,7 +46,7 @@ export class WordGridComponent extends AggridFunction implements OnInit {
         headerName: '',
         width: 34,
         cellStyle: {'text-align': 'center', padding: '0px'},
-        cellRenderer: 'buttonRenderer',
+        cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
           label: '',
@@ -59,9 +59,9 @@ export class WordGridComponent extends AggridFunction implements OnInit {
         width: 70,
         cellStyle: {'text-align': 'center'}
       },
-      {headerName: '논리명',        field: 'logicalName',     width: 100 },      
+      {headerName: '논리명',        field: 'logicalName',     width: 100 },
       {headerName: '물리명',        field: 'physicalName',    width: 100 },
-      {headerName: '논리명(영문)',  field: 'logicalNameEng',  width: 100 },      
+      {headerName: '논리명(영문)',  field: 'logicalNameEng',  width: 100 },
       {headerName: '비고',          field: 'comment',         width: 400 }
     ];
 
@@ -80,7 +80,7 @@ export class WordGridComponent extends AggridFunction implements OnInit {
 
   getList(params?: any): void {
     this.service
-        .getList()        
+        .getList()
         .subscribe(
           (model: ResponseList<Word>) => {
             if (model.total > 0) {

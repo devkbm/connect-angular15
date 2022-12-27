@@ -60,14 +60,15 @@ export class AppLayoutComponent implements OnInit  {
 
     if (sessionMenuGroup) {
       this.menuGroupInfo.selectedId = sessionMenuGroup;
-      this.selectMenuGroup(sessionMenuGroup);
+      const sessionUrl = sessionStorage.getItem('selectedMenu') as string;
+      this.selectMenuGroup(sessionMenuGroup, sessionUrl);
     } else {
       this.menuGroupInfo.selectedId = this.menuGroupInfo.list[0].value;
-      this.selectMenuGroup(this.menuGroupInfo.list[0].value);
+      this.selectMenuGroup(this.menuGroupInfo.list[0].value, null);
     }
   }
 
-  selectMenuGroup(value: string): void {
+  selectMenuGroup(value: string, initUrl: string | null): void {
     sessionStorage.setItem('selectedMenuGroup', value);
 
     this.service
@@ -82,8 +83,13 @@ export class AppLayoutComponent implements OnInit  {
               sessionStorage.setItem('menuList', '');
             }
 
-            const url = sessionStorage.getItem('selectedMenu') as string;
-            this.moveToUrl(url);
+            if (initUrl) {
+              this.moveToUrl(initUrl);
+            } else {
+              if ( value === '001HRM') this.moveToUrl("/hrm");
+              if ( value === '001GRP') this.moveToUrl("/grw");
+              if ( value === '001COM') this.moveToUrl("/system");
+            }
           }
         );
   }
