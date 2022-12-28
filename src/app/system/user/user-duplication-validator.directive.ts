@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 import { NG_ASYNC_VALIDATORS, AbstractControl, ValidationErrors, AsyncValidator, AsyncValidatorFn } from '@angular/forms';
 import { UserService } from './user.service';
 import { User } from './user.model';
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 
 import { Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { CommonCodeService } from './common-code.service';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { CommonCode } from './common-code.model';
 import { CommonCodeHierarchy } from './common-code-hierarchy.model';
-import { ResponseList } from '../../core/model/response-list';
-import { FormBase, FormType } from '../../core/form/form-base';
+import { ResponseList } from 'src/app/core/model/response-list';
+import { FormBase, FormType } from 'src/app/core/form/form-base';
 import { SystemTypeEnum } from './system-type-enum.model';
 
 

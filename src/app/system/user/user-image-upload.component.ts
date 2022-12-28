@@ -1,4 +1,3 @@
-import { inject } from '@angular/core/testing';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 import { saveAs } from 'file-saver';
@@ -8,9 +7,9 @@ import { UserService } from './user.service';
 @Component({
   selector: 'app-user-image-upload',
   template: `
-  <div style="text-align: center;">
-    <img nz-image [nzSrc]="imageSrc + pictureFileId" width="100px" height="100px" />
-    <br/>
+  <div class="container">
+    <nz-avatar class="avatar" nzShape="square" [nzSize]="96" [nzSrc]="getImageSrc()" nzIcon="user">
+    </nz-avatar>
     <nz-space [nzAlign]="'center'">
       <nz-upload
           [nzAction]="upload.url"
@@ -33,45 +32,47 @@ import { UserService } from './user.service';
   </div>
   `,
   styles: [`
-    .upload-button {
-      position: absolute;
-      left: 65px;
-      top: 76px;
-
-      width: 12px;
-      height: 24px;
-      /*background-color: darkslategray;*/
-
-      padding-top: -20px;
+    .container {
       text-align: center;
+      height: 96px;
+      background-color: green;
+    }
+
+    .avatar {
+    }
+
+    .upload-button {
+      width: 24px;
+      height: 24px;
+      background-color: darkslategray;
+
+      position: absolute;
+      float: right;
+      right: 26px;
+      bottom: 0px;
     }
 
     .download-button {
-      position: absolute;
-      left: 95px;
-      top: 76px;
-
-      width: 12px;
+      width: 24px;
       height: 24px;
-      /*background-color: darkslategray;*/
+      background-color: darkslategray;
 
-      padding-top: -20px;
+      position: absolute;
+      float: right;
+      right: 0px;
+      bottom: 0px;
     }
 
     .button-icon {
+      /*
       position: absolute;
       margin-left: -6px;
       margin-top: -6px;
+      */
     }
   `]
 })
 export class UserImageUploadComponent implements OnInit, OnChanges {
-
-  /*
-  uploadUrl: string = GlobalProperty.serverUrl + '/api/system/user/image';
-  headers: any = { Authorization: sessionStorage.getItem('token') };
-  data: any;
-  */
 
   upload: {url: string, headers: any, data: any} = {
     url: GlobalProperty.serverUrl + '/api/system/user/image',
@@ -99,17 +100,13 @@ export class UserImageUploadComponent implements OnInit, OnChanges {
   constructor(private userService: UserService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['userId']) {
+    if (changes['userId'].currentValue && changes['userId'].currentValue !== null && changes['userId'].currentValue !== undefined) {
+      // console.log(changes['userId'].currentValue);
       this.upload.data = {userId : changes['userId'].currentValue};
     }
   }
 
   ngOnInit(): void {
-    /*
-    this.headers = {
-      "Authorization": sessionStorage.getItem('token')
-    }
-    */
   }
 
   // 미리보기 버튼 클릭시
@@ -139,6 +136,12 @@ export class UserImageUploadComponent implements OnInit, OnChanges {
             saveAs(blob, this.userId + ".jpg");
           }
         );
+  }
+
+  getImageSrc() {
+    if (!this.pictureFileId) return '';
+
+    return this.imageSrc + this.pictureFileId;
   }
 
   private findFileName(path: string): string {

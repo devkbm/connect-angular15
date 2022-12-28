@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { ResponseList } from '../../core/model/response-list';
+import { ResponseList } from 'src/app/core/model/response-list';
 import { DeptHierarchy } from './dept-hierarchy.model';
 
 import { DeptService } from './dept.service';

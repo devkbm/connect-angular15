@@ -60,19 +60,19 @@ export class AppLayoutComponent implements OnInit  {
 
     if (sessionMenuGroup) {
       this.menuGroupInfo.selectedId = sessionMenuGroup;
-      const sessionUrl = sessionStorage.getItem('selectedMenu') as string;
-      this.selectMenuGroup(sessionMenuGroup, sessionUrl);
+      const LAST_VISIT_URL = sessionStorage.getItem('selectedMenu') as string;
+      this.selectMenuGroup(sessionMenuGroup, LAST_VISIT_URL);
     } else {
       this.menuGroupInfo.selectedId = this.menuGroupInfo.list[0].value;
       this.selectMenuGroup(this.menuGroupInfo.list[0].value, null);
     }
   }
 
-  selectMenuGroup(value: string, initUrl: string | null): void {
-    sessionStorage.setItem('selectedMenuGroup', value);
+  selectMenuGroup(menuGroupId: string, moveUrl: string | null): void {
+    sessionStorage.setItem('selectedMenuGroup', menuGroupId);
 
     this.service
-        .getMenuHierarchy(value)
+        .getMenuHierarchy(menuGroupId)
         .subscribe(
           (model: ResponseList<MenuHierarchy>) => {
             if ( model.total > 0 ) {
@@ -83,12 +83,10 @@ export class AppLayoutComponent implements OnInit  {
               sessionStorage.setItem('menuList', '');
             }
 
-            if (initUrl) {
-              this.moveToUrl(initUrl);
+            if (moveUrl) {
+              this.moveToUrl(moveUrl);
             } else {
-              if ( value === '001HRM') this.moveToUrl("/hrm");
-              if ( value === '001GRP') this.moveToUrl("/grw");
-              if ( value === '001COM') this.moveToUrl("/system");
+              this.moveToMenuGroupUrl(menuGroupId);
             }
           }
         );
@@ -97,6 +95,18 @@ export class AppLayoutComponent implements OnInit  {
   moveToUrl(url: string) {
     sessionStorage.setItem('selectedMenu', url);
     this.router.navigate([url]);
+  }
+
+  moveToMenuGroupUrl(menuGroupId: string) {
+    type mapType = {
+      [key: string]: string;
+    }
+    const menuGroupUrls: mapType = {
+      '001HRM': '/hrm',
+      '001GRP': '/grw',
+      '001COM': '/system'
+    }
+    this.moveToUrl(menuGroupUrls[menuGroupId]);
   }
 
   selectMenu(event: NzFormatEmitEvent): void {

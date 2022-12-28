@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     remember          : new FormControl<boolean>(false, { validators: Validators.required })
   });
 
+  private FIRST_PAGE_URL = '/home';
+
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
             (model: UserToken) => {
               this.setItemSessionStorage(model);
 
-              this.router.navigate(['/system']);
+              this.router.navigate([this.FIRST_PAGE_URL]);
             }
           );
     }
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
           (model: UserToken) => {
           this.setItemSessionStorage(model);
 
-          this.router.navigate(['/system']);
+          this.router.navigate([this.FIRST_PAGE_URL]);
           }
         );
   }

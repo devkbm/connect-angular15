@@ -47,7 +47,7 @@ export class NzDeptTreeSelectComponent implements ControlValueAccessor {
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
   @Input() placeholder: string = '';
-  @Input() nodes!: any[];
+  @Input() nodes: any[] = [];
 
   @Input() nzErrorTip?: string | TemplateRef<{$implicit: AbstractControl | NgModel;}>;
 

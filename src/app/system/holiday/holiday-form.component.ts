@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBase, FormType } from '../../core/form/form-base';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
+import { FormBase, FormType } from 'src/app/core/form/form-base';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 import { HolidayService } from './holiday.service';
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { Holiday } from './holiday.model';
 
 

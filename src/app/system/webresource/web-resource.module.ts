@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomHttpInterceptor } from '../../core/interceptor/custom-http-interceptor';
+import { CustomHttpInterceptor } from 'src/app/core/interceptor/custom-http-interceptor';
 
 /* NG-ZORRO */
 import { NZ_I18N, ko_KR } from 'ng-zorro-antd/i18n';
@@ -26,8 +26,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
-import { ButtonRendererComponent } from '../../core/grid/renderer/button-renderer.component';
-import { CheckboxRendererComponent } from '../../core/grid/renderer/checkbox-renderer.component';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
+import { CheckboxRendererComponent } from 'src/app/core/grid/renderer/checkbox-renderer.component';
 
 /* Inner Component */
 import { WebResourceComponent } from './web-resource.component';

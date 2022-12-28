@@ -4,8 +4,8 @@ import { HttpClient, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
-import { DataService } from '../../core/service/data.service';
-import { ResponseObject } from '../../core/model/response-object';
+import { DataService } from 'src/app/core/service/data.service';
+import { ResponseObject } from 'src/app/core/model/response-object';
 
 import { BizCode } from './biz-code.model';
 import { ResponseList } from 'src/app/core/model/response-list';

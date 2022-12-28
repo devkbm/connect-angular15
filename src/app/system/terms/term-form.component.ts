@@ -3,9 +3,9 @@ import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TermService } from './term.service';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { Term } from './term.model';
 import { FormBase, FormType } from 'src/app/core/form/form-base';
 import { ResponseList } from 'src/app/core/model/response-list';

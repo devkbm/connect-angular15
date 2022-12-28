@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
-import { FormBase, FormType } from '../../core/form/form-base';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
+import { FormBase, FormType } from 'src/app/core/form/form-base';
 
-import { ResponseObject } from '../../core/model/response-object';
-import { ResponseList } from '../../core/model/response-list';
+import { ResponseObject } from 'src/app/core/model/response-object';
+import { ResponseList } from 'src/app/core/model/response-list';
 
 import { BizCodeType } from './biz-code-type.model';
 import { BizCodeTypeService } from './biz-code-type.service';

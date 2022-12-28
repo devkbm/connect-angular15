@@ -47,7 +47,7 @@ export class UserComponent extends AppBase implements OnInit {
         this.deleteUser();
       }
     }
-  }];  
+  }];
 
   query: { key: string, value: string, list: {label: string, value: string}[] } = {
     key: 'userId',
@@ -56,29 +56,31 @@ export class UserComponent extends AppBase implements OnInit {
       {label: '아이디', value: 'userId'},
       {label: '성명', value: 'name'}
     ]
-  }  
+  }
 
   drawerUser: { visible: boolean, initLoadId: any } = {
     visible: false,
     initLoadId: null
-  }  
+  }
 
-  constructor(location: Location,private userService: UserService) {
+  constructor(location: Location,
+              private service: UserService) {
     super(location);
   }
 
   ngOnInit() {
-  }  
+  }
 
   newForm() {
     this.drawerUser.initLoadId = null;
     this.drawerUser.visible = true;
-    
+
   }
 
-  editForm(item: any) {
-    this.drawerUser.initLoadId = item.userId;    
-    this.drawerUser.visible = true;    
+  editForm(item: User) {
+    console.log(item.userId);
+    this.drawerUser.initLoadId = item.userId;
+    this.drawerUser.visible = true;
   }
 
   getUserList() {
@@ -93,7 +95,7 @@ export class UserComponent extends AppBase implements OnInit {
 
   deleteUser() {
     const userId: string = this.grid.getSelectedRow().userId;
-    this.userService
+    this.service
         .deleteUser(userId)
         .subscribe(
           (model: ResponseObject<User>) => {
@@ -102,7 +104,7 @@ export class UserComponent extends AppBase implements OnInit {
         );
   }
 
-  userGridSelected(params: any) {    
+  userGridSelected(params: any) {
     this.drawerUser.initLoadId = params.userId;
   }
 

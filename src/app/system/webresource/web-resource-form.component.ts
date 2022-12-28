@@ -2,13 +2,13 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit } fro
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { WebResourceService } from './web-resource.service';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { WebResource } from './web-resource.model';
-import { FormBase, FormType } from '../../core/form/form-base';
+import { FormBase, FormType } from 'src/app/core/form/form-base';
 import { existingWebResourceValidator } from './web-resource-duplication-validator.directive';
-import { ResponseList } from '../../core/model/response-list';
+import { ResponseList } from 'src/app/core/model/response-list';
 import { ResouceTypeEnum } from './resource-type-enum';
 import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
 

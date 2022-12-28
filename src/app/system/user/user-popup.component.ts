@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UserSessionService } from '../../core/service/user-session.service';
+import { UserSessionService } from 'src/app/core/service/user-session.service';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { User } from './user.model';
 
 @Component({

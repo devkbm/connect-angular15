@@ -4,10 +4,10 @@ import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common
 import { Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
-import { DataService } from '../../core/service/data.service';
+import { DataService } from 'src/app/core/service/data.service';
 
-import { ResponseObject } from '../../core/model/response-object';
-import { ResponseList } from '../../core/model/response-list';
+import { ResponseObject } from 'src/app/core/model/response-object';
+import { ResponseList } from 'src/app/core/model/response-list';
 import { MenuGroup } from './menu-group.model';
 import { Menu } from './menu.model';
 import { MenuHierarchy } from './menu-hierarchy.model';

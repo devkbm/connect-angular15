@@ -23,7 +23,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AgGridModule } from 'ag-grid-angular';
-import { ButtonRendererComponent } from '../../core/grid/renderer/button-renderer.component';
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 import { TeamService } from './service/team.service';
 import { TeamFormComponent } from './component/team-form.component';
 import { TeamGridComponent } from './component/team-grid.component';

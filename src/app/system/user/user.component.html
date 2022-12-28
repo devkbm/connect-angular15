@@ -45,14 +45,15 @@
   </app-user-grid>
 </div>
 
+
 <nz-drawer
   [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
   [nzMaskClosable]="true"
-  nzWidth="50%"
+  [nzWidth]="720"
   [nzVisible]="drawerUser.visible"
   nzTitle="사용자 등록"
   (nzOnClose)="drawerUser.visible = false">
-    <app-user-form #userForm *nzDrawerContent
+    <app-user-form *nzDrawerContent
       [initLoadId]="drawerUser.initLoadId"
       (formSaved)="getUserList()"
       (formDeleted)="getUserList()"

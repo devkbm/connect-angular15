@@ -2,14 +2,14 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit } fro
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { DeptService } from './dept.service';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 import { existingDeptValidator } from './dept-duplication-validator.directive';
 
-import { ResponseObject } from '../../core/model/response-object';
-import { FormBase, FormType } from '../../core/form/form-base';
+import { ResponseObject } from 'src/app/core/model/response-object';
+import { FormBase, FormType } from 'src/app/core/form/form-base';
 import { Dept } from './dept.model';
 import { DeptHierarchy } from './dept-hierarchy.model';
-import { ResponseList } from '../../core/model/response-list';
+import { ResponseList } from 'src/app/core/model/response-list';
 import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Self, Optional, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { DeptService } from './dept.service';
 import { Dept } from './dept.model';
-import { ResponseList } from '../../core/model/response-list';
+import { ResponseList } from 'src/app/core/model/response-list';
 
 @Component({
   selector: 'app-dept-select',

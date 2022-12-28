@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import { FormType, FormBase } from '../../core/form/form-base';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
-import { ResponseList } from '../../core/model/response-list';
-import { ResponseObject } from '../../core/model/response-object';
+import { FormType, FormBase } from 'src/app/core/form/form-base';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
+import { ResponseList } from 'src/app/core/model/response-list';
+import { ResponseObject } from 'src/app/core/model/response-object';
 
 import { UserService } from './user.service';
 import { User } from './user.model';
@@ -53,7 +53,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   override fg = this.fb.group({
     userId: new FormControl<string | null>(null, {
       validators: Validators.required,
-      asyncValidators: [existingUserValidator(this.userService)],
+      asyncValidators: [existingUserValidator(this.service)],
       updateOn: 'blur'
     }),
     organizationCode: new FormControl<string | null>({ value: null, disabled: true }, { validators: Validators.required }),
@@ -69,7 +69,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   });
 
   constructor(private fb: FormBuilder,
-              private userService: UserService,
+              private service: UserService,
               private deptService: DeptService,
               private appAlarmService: AppAlarmService) {
     super();
@@ -92,7 +92,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    //console.log(changes);
   }
 
   newForm(): void {
@@ -102,7 +102,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
 
     this.fg.reset();
 
-    this.fg.controls.userId.setAsyncValidators(existingUserValidator(this.userService));
+    this.fg.controls.userId.setAsyncValidators(existingUserValidator(this.service));
     this.fg.controls.organizationCode.setValue(sessionStorage.getItem('organizationCode'));
     this.fg.controls.staffNo.valueChanges.subscribe(x => {
       if (x === null) return;
@@ -126,7 +126,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   get(userId: string): void {
-    this.userService
+    this.service
         .getUser(userId)
         .subscribe(
           (model: ResponseObject<User>) => {
@@ -159,7 +159,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
       return;
     }
 
-    this.userService
+    this.service
         .registerUser(this.fg.getRawValue())
         .subscribe(
           (model: ResponseObject<User>) => {
@@ -170,7 +170,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   remove(): void {
-    this.userService
+    this.service
         .deleteUser(this.fg.controls.userId.value!)
         .subscribe(
           (model: ResponseObject<User>) => {
@@ -181,7 +181,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   getAuthorityList(): void {
-    this.userService
+    this.service
         .getAuthorityList()
         .subscribe(
           (model: ResponseList<Authority>) => {
@@ -193,7 +193,7 @@ export class UserFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   getMenuGroupList(): void {
-    this.userService
+    this.service
         .getMenuGroupList()
         .subscribe(
           (model: ResponseList<MenuGroup>) => {

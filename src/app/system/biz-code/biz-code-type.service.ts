@@ -4,10 +4,10 @@ import { HttpClient, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { DataService } from '../../core/service/data.service';
+import { DataService } from 'src/app/core/service/data.service';
 
 import { BizCodeType } from './biz-code-type.model';
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { ResponseList } from 'src/app/core/model/response-list';
 import { SelectControlModel } from 'src/app/core/model/select-control.model.ts';
 

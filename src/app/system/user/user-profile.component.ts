@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserSessionService } from 'src/app/core/service/user-session.service';
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { User } from './user.model';
 
 @Component({

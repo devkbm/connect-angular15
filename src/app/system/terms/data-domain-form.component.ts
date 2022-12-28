@@ -2,10 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewIni
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { FormBase, FormType } from 'src/app/core/form/form-base';
-import { AppAlarmService } from '../../core/service/app-alarm.service';
+import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 
-import { ResponseList } from '../../core/model/response-list';
-import { ResponseObject } from '../../core/model/response-object';
+import { ResponseList } from 'src/app/core/model/response-list';
+import { ResponseObject } from 'src/app/core/model/response-object';
 import { DataDomainService } from './data-domain.service';
 import { DataDomain } from './data-domain.model';
 import { HtmlSelectOption } from 'src/app/shared/nz-input-select/html-select-option';

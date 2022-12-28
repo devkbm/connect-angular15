@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'login2', component: Login2Component },
   {path: 'login3', component: Login3Component },
-  //{path: 'home', component: AppLayoutComponent, canActivateChild: [AuthGuardService]},
+  {path: 'home', component: AppLayoutComponent, canActivateChild: [AuthGuardService]},
   {path: 'test', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)},
   {path: 'system', loadChildren: () => import('src/app/system/system-management.module').then(m => m.SystemManagementModule)},
   {path: 'hrm', loadChildren: () => import('src/app/hrm/hrm.module').then(m => m.HrmModule)},

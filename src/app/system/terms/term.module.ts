@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomHttpInterceptor } from '../../core/interceptor/custom-http-interceptor';
+import { CustomHttpInterceptor } from 'src/app/core/interceptor/custom-http-interceptor';
 
 /* NG-ZORRO */
 import { NZ_I18N, ko_KR } from 'ng-zorro-antd/i18n';
