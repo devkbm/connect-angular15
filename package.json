@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
-    "@ckeditor/ckeditor5-angular": "^4.0.0",
+    "@ckeditor/ckeditor5-angular": "^5.1.1",
     "@ckeditor/ckeditor5-build-classic": "^35.4.0",
     "@daypilot/daypilot-lite-angular": "^3.11.0",
     "@types/file-saver": "^2.0.5",
