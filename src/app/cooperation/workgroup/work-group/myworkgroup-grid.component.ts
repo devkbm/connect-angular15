@@ -64,6 +64,14 @@ export class MyWorkGroupGridComponent extends AggridFunction implements OnInit {
           hide: true
       },
       {
+        headerName: '',
+        width: 10,
+        suppressSizeToFit: true,
+        cellStyle: (params: any) => {
+          return {backgroundColor: params.data.color};
+        }
+      },
+      {
         headerName: '작업그룹명',
         field: 'name',
         width: 140
