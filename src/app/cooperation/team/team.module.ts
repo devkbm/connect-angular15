@@ -20,6 +20,7 @@ import { TeamFormComponent } from './team-form.component';
 import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
 import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
 import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
+import { TeamGridComponent } from './team-grid.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-
     AgGridModule,
     NzInputTextComponent,
     NzCrudButtonGroupComponent,
-    NzInputSelectComponent
+    NzInputSelectComponent,
+    TeamGridComponent
   ],
   declarations: [
     TeamFormComponent,

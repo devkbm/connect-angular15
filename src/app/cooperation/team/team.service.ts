@@ -15,7 +15,7 @@ import { TeamJoinableUserModel, TeamModel } from './team.model';
 export class TeamService extends DataService {
 
   constructor(http: HttpClient, tokenExtractor: HttpXsrfTokenExtractor) {
-      super('/grw', http, tokenExtractor);
+      super('/api/grw/team', http, tokenExtractor);
   }
 
   /**
@@ -23,9 +23,10 @@ export class TeamService extends DataService {
    * @param params 조회 조건 객체
    */
   getList(params?: any): Observable<ResponseList<TeamModel>> {
-    const url = `${this.API_URL}/team`;
+    const url = `${this.API_URL}`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true,
       params: params
     };
 
@@ -41,9 +42,10 @@ export class TeamService extends DataService {
    * @param id 팀 id
    */
   get(id: string): Observable<ResponseObject<TeamModel>> {
-    const url = `${this.API_URL}/team/${id}`;
+    const url = `${this.API_URL}/${id}`;
     const options = {
-      headers: this.getAuthorizedHttpHeaders()
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
     };
 
     return this.http
@@ -58,9 +60,10 @@ export class TeamService extends DataService {
    * @param team team 객체
    */
   save(team: TeamModel): Observable<ResponseObject<TeamModel>> {
-    const url = `${this.API_URL}/team`;
+    const url = `${this.API_URL}`;
     const options = {
-      headers: this.getAuthorizedHttpHeaders()
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
     };
 
     return this.http
@@ -78,7 +81,8 @@ export class TeamService extends DataService {
   remove(id: string): Observable<ResponseObject<TeamModel>> {
     const url = `${this.API_URL}/team/${id}`;
     const options = {
-      headers: this.getAuthorizedHttpHeaders()
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
     };
 
     return this.http
@@ -91,7 +95,8 @@ export class TeamService extends DataService {
   getAllUserList(): Observable<ResponseList<TeamJoinableUserModel>> {
     const url = `${this.API_URL}/allmember`;
     const options = {
-      headers: this.getAuthorizedHttpHeaders()
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
     };
 
     return this.http

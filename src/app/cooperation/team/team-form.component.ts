@@ -43,7 +43,7 @@ import { TeamJoinableUserModel, TeamModel } from './team.model';
             formControlName="memberList" itemId="memberList"
             [options]="members" [opt_value]="'userId'" [opt_label]="'userName'" [mode]="'multiple'"
             placeholder="팀원을 선택해주세요."
-            [nzErrorTip]="errorTpl" [required]="true">팀원
+            [nzErrorTip]="errorTpl">팀원
           </app-nz-input-select>
         </div>
       </div>
