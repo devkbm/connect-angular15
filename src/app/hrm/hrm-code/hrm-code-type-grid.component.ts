@@ -1,16 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-
-import { AggridFunction } from 'src/app/core/grid/aggrid-function';
-import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
-import { ResponseList } from 'src/app/core/model/response-list';
-
-import { HrmCodeTypeService } from './hrm-code-type.service';
-import { HrmType } from './hrm-type.model';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 
-import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
+import { AggridFunction } from 'src/app/core/grid/aggrid-function';
 
+import { HrmType } from './hrm-type.model';
+
+import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 
 @Component({
   standalone: true,
@@ -21,7 +17,7 @@ import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-rende
         [ngStyle]="style"
         class="ag-theme-balham-dark"
         [rowSelection]="'single'"
-        [rowData]="_list"
+        [rowData]="list"
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [getRowId]="getRowId"
@@ -33,14 +29,13 @@ import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-rende
 })
 export class HrmCodeTypeGridComponent extends AggridFunction implements OnInit {
 
-  _list: HrmType[] = [];
+  @Input() list: HrmType[] = [];
 
   @Output() rowSelected = new EventEmitter();
   @Output() rowDoubleClicked = new EventEmitter();
   @Output() editButtonClicked = new EventEmitter();
 
-  constructor(private appAlarmService: AppAlarmService,
-              private service: HrmCodeTypeService) {
+  constructor() {
 
     super();
 
@@ -83,25 +78,6 @@ export class HrmCodeTypeGridComponent extends AggridFunction implements OnInit {
 
   onEditButtonClick(e: any) {
     this.editButtonClicked.emit(e.rowData);
-  }
-
-  getList(hrmType: string): void {
-    const params = {
-      hrmType : hrmType
-    };
-
-    this.service
-        .getList(params)
-        .subscribe(
-          (model: ResponseList<HrmType>) => {
-            if (model.total > 0) {
-              this._list = model.data;
-            } else {
-              this._list = [];
-            }
-            this.appAlarmService.changeMessage(model.message);
-          }
-        );
   }
 
   selectionChanged(event: any) {

@@ -15,13 +15,14 @@
 
     <button nz-button (click)="getGridHrmCodeType()">
       <span nz-icon nzType="form"></span>조회
-    </button>    
+    </button>
   </div>
 </div>
 
 <div class="content">
     <h3 class="pgm-title">코드 분류 목록 {{drawerCodeType | json}}</h3>
     <app-hrm-code-type-grid #gridHrmType
+      [list]="gridHrmCodeTypeList"
       (rowSelected)="rowClickHrmCodeType($event)"
       (rowDoubleClicked)="editHrmCodeType($event)"
       (editButtonClicked)="editHrmCodeType($event)">
@@ -29,6 +30,7 @@
 
     <h3 class="pgm-title">코드 목록 {{drawerCode | json}}</h3>
     <app-hrm-code-grid #gridHrmTypeCode
+      [list]="gridHrmCodeList"
       (rowSelected)="rowClickHrmCode($event)"
       (rowDoubleClicked)="editHrmCode($event)"
       (editButtonClicked)="editHrmCode($event)">

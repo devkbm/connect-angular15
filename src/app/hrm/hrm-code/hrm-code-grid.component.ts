@@ -1,13 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-
-import { AggridFunction } from 'src/app/core/grid/aggrid-function';
-import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
-import { ResponseList } from 'src/app/core/model/response-list';
-
-import { HrmCodeService } from './hrm-code.service';
-import { HrmCode } from './hrm-code.model';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
+
+import { AggridFunction } from 'src/app/core/grid/aggrid-function';
+import { HrmCode } from './hrm-code.model';
 
 import { ButtonRendererComponent } from 'src/app/core/grid/renderer/button-renderer.component';
 import { CheckboxRendererComponent } from 'src/app/core/grid/renderer/checkbox-renderer.component';
@@ -21,7 +17,7 @@ import { CheckboxRendererComponent } from 'src/app/core/grid/renderer/checkbox-r
         [ngStyle]="style"
         class="ag-theme-balham-dark"
         [rowSelection]="'single'"
-        [rowData]="_list"
+        [rowData]="list"
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [getRowId]="getRowId"
@@ -33,7 +29,7 @@ import { CheckboxRendererComponent } from 'src/app/core/grid/renderer/checkbox-r
 })
 export class HrmCodeGridComponent extends AggridFunction implements OnInit {
 
-  _list: HrmCode[] = [];
+  @Input() list: HrmCode[] = [];
 
   @Input() appointmentCode: any = '';
 
@@ -41,8 +37,7 @@ export class HrmCodeGridComponent extends AggridFunction implements OnInit {
   @Output() rowDoubleClicked = new EventEmitter();
   @Output() editButtonClicked = new EventEmitter();
 
-  constructor(private appAlarmService: AppAlarmService,
-              private hrmCodeService: HrmCodeService) {
+  constructor() {
 
     super();
 
@@ -96,25 +91,6 @@ export class HrmCodeGridComponent extends AggridFunction implements OnInit {
 
   private onEditButtonClick(e: any) {
     this.editButtonClicked.emit(e.rowData);
-  }
-
-  public getGridList(typeId: string): void {
-    const params = {
-      typeId : typeId
-    };
-
-    this.hrmCodeService
-        .getList(params)
-        .subscribe(
-          (model: ResponseList<HrmCode>) => {
-            if (model.total > 0) {
-              this._list = model.data;
-            } else {
-              this._list = [];
-            }
-            this.appAlarmService.changeMessage(model.message);
-          }
-        );
   }
 
   selectionChanged(event: any) {
