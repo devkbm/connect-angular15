@@ -6,6 +6,8 @@ import { AppAlarmService } from 'src/app/core/service/app-alarm.service';
 import { ResponseObject } from 'src/app/core/model/response-object';
 import { TeamService } from './team.service';
 import { TeamJoinableUserModel, TeamModel } from './team.model';
+import { ResponseList } from 'src/app/core/model/response-list';
+import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
 
 @Component({
   selector: 'app-team-form',
@@ -31,7 +33,7 @@ import { TeamJoinableUserModel, TeamModel } from './team.model';
         </div>
 
         <div nz-col nzSpan="8">
-          <app-nz-input-text
+          <app-nz-input-text #teamName
             formControlName="teamName" itemId="teamName"
             placeholder="팀 이름을 입력해주세요."
             [required]="true" [nzErrorTip]="errorTpl">팀명
@@ -41,7 +43,7 @@ import { TeamJoinableUserModel, TeamModel } from './team.model';
         <div nz-col nzSpan="8">
           <app-nz-input-select
             formControlName="memberList" itemId="memberList"
-            [options]="members" [opt_value]="'userId'" [opt_label]="'userName'" [mode]="'multiple'"
+            [options]="members" [opt_value]="'id'" [opt_label]="'name'" [mode]="'multiple'"
             placeholder="팀원을 선택해주세요."
             [nzErrorTip]="errorTpl">팀원
           </app-nz-input-select>
@@ -52,6 +54,7 @@ import { TeamJoinableUserModel, TeamModel } from './team.model';
     <div class="footer">
       <app-nz-crud-button-group
         [searchVisible]="false"
+        [isSavePopupConfirm]="false"
         (closeClick)="closeForm()"
         (saveClick)="save()"
         (deleteClick)="remove()">
@@ -76,6 +79,7 @@ import { TeamJoinableUserModel, TeamModel } from './team.model';
   `]
 })
 export class TeamFormComponent extends FormBase implements OnInit, AfterViewInit, OnChanges {
+  @ViewChild('teamName') teamName?: NzInputTextComponent;
 
   override fg = this.fb.group({
     teamId      : new FormControl<string | null>(null, { validators: [Validators.required] }),
@@ -92,6 +96,8 @@ export class TeamFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   ngOnInit() {
+    this.getMembers();
+
     if (this.initLoadId) {
       this.get(this.initLoadId);
     } else {
@@ -100,6 +106,13 @@ export class TeamFormComponent extends FormBase implements OnInit, AfterViewInit
   }
 
   ngAfterViewInit(): void {
+    if (this.formType === FormType.NEW) {
+      this.teamName?.focus();
+    } else {
+      this.teamName?.focus();
+    }
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -110,10 +123,12 @@ export class TeamFormComponent extends FormBase implements OnInit, AfterViewInit
     this.fg.reset();
 
     this.fg.controls.teamId.disable();
+
   }
 
   modifyForm(formData: TeamModel): void {
     this.formType = FormType.MODIFY;
+    this.fg.controls.teamId.disable();
 
     this.fg.patchValue(formData);
   }
@@ -155,7 +170,7 @@ export class TeamFormComponent extends FormBase implements OnInit, AfterViewInit
 
   remove(): void {
     this.service
-        .remove(this.fg.value.teamId!)
+        .remove(this.fg.getRawValue().teamId!)
         .subscribe(
           (model: ResponseObject<TeamModel>) => {
             this.appAlarmService.changeMessage(model.message);
@@ -164,6 +179,16 @@ export class TeamFormComponent extends FormBase implements OnInit, AfterViewInit
         );
   }
 
-
+  getMembers() {
+    this.service
+        .getAllUserList()
+        .subscribe(
+          (model: ResponseList<TeamJoinableUserModel>) => {
+            if (model.total > 0) {
+              this.members = model.data;
+            }
+          }
+        )
+  }
 
 }

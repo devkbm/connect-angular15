@@ -79,7 +79,7 @@ export class TeamService extends DataService {
    * @param id team 객체 id
    */
   remove(id: string): Observable<ResponseObject<TeamModel>> {
-    const url = `${this.API_URL}/team/${id}`;
+    const url = `${this.API_URL}/${id}`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
       withCredentials: true

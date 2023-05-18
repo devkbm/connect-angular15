@@ -6,13 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NZ_I18N, ko_KR } from 'ng-zorro-antd/i18n';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 /* AG-GRID */
 import { AgGridModule } from 'ag-grid-angular';
 
 const nzModules = [
   NzFormModule,
-  NzButtonModule
+  NzButtonModule,
+  NzDrawerModule
 ]
 
 import { TeamComponent } from './team.component';
@@ -21,6 +23,7 @@ import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text
 import { NzCrudButtonGroupComponent } from 'src/app/shared/nz-crud-button-group/nz-crud-button-group.component';
 import { NzInputSelectComponent } from 'src/app/shared/nz-input-select/nz-input-select.component';
 import { TeamGridComponent } from './team-grid.component';
+
 
 @NgModule({
   imports: [
