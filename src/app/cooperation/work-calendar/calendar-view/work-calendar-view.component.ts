@@ -2,12 +2,11 @@ import { Component, OnInit, ViewChild, Output, EventEmitter, Input, AfterViewIni
 import { formatDate } from '@angular/common';
 
 import { ResponseList } from 'src/app/core/model/response-list';
-import { WorkGroupService } from '../work-group/workgroup.service';
-import { WorkGroupSchedule } from '../schedule/workgroup-schedule.model';
 
 import { DaypilotCalendarComponent, ModeChangedArgs } from 'src/app/shared/calendar/daypilot-calendar.component';
 import { DayPilot } from '@daypilot/daypilot-lite-angular';
-import { WorkScheduleService } from '../schedule/work-schedule.service';
+import { WorkCalendarEventService } from '../event/work-calendar-event.service';
+import { WorkCalendarEvent } from '../event/work-calendar-event.model';
 
 export interface NewDateSelectedArgs {
   workCalendarId: number;
@@ -16,11 +15,11 @@ export interface NewDateSelectedArgs {
 }
 
 @Component({
-selector: 'app-work-calendar',
-templateUrl: './work-calendar.component.html',
-styleUrls: ['./work-calendar.component.css']
+  selector: 'app-work-calendar-view',
+  templateUrl: './work-calendar-view.component.html',
+  styleUrls: ['./work-calendar-view.component.css']
 })
-export class WorkCalendarComponent implements AfterViewInit {
+export class WorkCalendarViewComponent implements AfterViewInit {
 
   @ViewChild(DaypilotCalendarComponent) calendar!: DaypilotCalendarComponent;
   @Input() fkWorkCalendar: number = 0;
@@ -35,7 +34,7 @@ export class WorkCalendarComponent implements AfterViewInit {
   eventData: any[] = [];
   mode?: ModeChangedArgs;
 
-  constructor(private service: WorkScheduleService) {
+  constructor(private service: WorkCalendarEventService) {
   }
 
   ngAfterViewInit(): void {
@@ -74,7 +73,7 @@ export class WorkCalendarComponent implements AfterViewInit {
     this.service
         .getWorkScheduleList(param)
         .subscribe(
-            (model: ResponseList<WorkGroupSchedule>) => {
+            (model: ResponseList<WorkCalendarEvent>) => {
               let data: any[] = [];
 
               model.data.forEach(e => data.push({

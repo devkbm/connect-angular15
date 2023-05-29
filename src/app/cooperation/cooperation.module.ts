@@ -7,6 +7,7 @@ import { SurveyModule } from './survey/survey.module';
 import { TeamModule } from './team/team.module';
 import { TodoModule } from './todo/todo.module';
 import { WorkgroupModule } from './workgroup/workgroup.module';
+import { WorkCalendarModule } from './work-calendar/work-calendar.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { WorkgroupModule } from './workgroup/workgroup.module';
     SurveyModule,
     TeamModule,
     TodoModule,
-    WorkgroupModule
+    WorkgroupModule,
+    WorkCalendarModule
   ]
 })
 export class CooperationModule { }

@@ -20,13 +20,13 @@
     (selectChanged)="navigatorSelectChanged($event)">
   </app-daypilot-calendar-navigator>
 
-  <app-myworkgroup-grid class="title"
+  <app-my-work-calendar-grid class="title"
       #myWorkGroupGrid
       (rowSelected)="workGroupSelect($event)"
       (rowDoubleClicked)="modifyWorkGroup($event)">
-  </app-myworkgroup-grid>
+  </app-my-work-calendar-grid>
 
-  <app-work-calendar
+  <app-work-calendar-view
       #workCalendar class="calendar"
       [fkWorkCalendar]="workGroup.selectedWorkGroupId"
       (itemSelected)="editSchedule($event)"
@@ -34,7 +34,7 @@
       (eventDataChanged)="eventDateChanged($event)"
       (visibleRangeChanged)="calendarVisibleRangeChanged($event)"
       (modeChanged)="modeChanged($event)">
-  </app-work-calendar>
+  </app-work-calendar-view>
 </div>
 
 <nz-drawer
@@ -45,14 +45,14 @@
     nzTitle="일정 등록"
     (nzOnClose)="closeScheduleDrawer()">
 
-    <app-work-schedule-form *nzDrawerContent
+    <app-work-calendar-event-form *nzDrawerContent
         #workScheduleForm
         [initLoadId]="this.schedule.selectedScheduleId"
         [newFormValue]="this.newScheduleArgs"
         (formSaved)="getScheduleList()"
         (formDeleted)="getScheduleList()"
         (formClosed)="closeScheduleDrawer()">
-    </app-work-schedule-form>
+    </app-work-calendar-event-form>
 </nz-drawer>
 
 <nz-drawer
@@ -63,10 +63,10 @@
     nzTitle="작업그룹 등록"
     (nzOnClose)="closeWorkGroupDrawer()">
 
-    <app-workgroup-form *nzDrawerContent
+    <app-work-calendar-form *nzDrawerContent
         #workGroupForm
         (formSaved)="getMyWorkGroupList()"
         (formDeleted)="getMyWorkGroupList()"
         (formClosed)="closeWorkGroupDrawer()">
-    </app-workgroup-form>
+    </app-work-calendar-form>
 </nz-drawer>

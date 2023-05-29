@@ -6,18 +6,19 @@ import { ResponseObject } from 'src/app/core/model/response-object';
 import { FormBase, FormType } from 'src/app/core/form/form-base';
 import { ResponseList } from 'src/app/core/model/response-list';
 
-import { WorkGroupService } from './workgroup.service';
-import { WorkGroup } from './workgroup.model';
-import { WorkGroupMember } from './workgroup-member.model';
+import { WorkCalendar } from './work-calendar.model';
+import { WorkCalendarMember } from './work-calendar-member.model';
+import { WorkCalendarService } from './work-calendar.service';
 
 import { NzInputTextComponent } from 'src/app/shared/nz-input-text/nz-input-text.component';
 
+
 @Component({
-selector: 'app-workgroup-form',
-templateUrl: './workgroup-form.component.html',
-styleUrls: ['./workgroup-form.component.css']
+  selector: 'app-work-calendar-form',
+  templateUrl: './work-calendar-form.component.html',
+  styleUrls: ['./work-calendar-form.component.css']
 })
-export class WorkGroupFormComponent extends FormBase implements OnInit, AfterViewInit {
+export class WorkCalendarFormComponent extends FormBase implements OnInit, AfterViewInit {
 
   workGroupList: any;
   memberList: any;
@@ -27,7 +28,7 @@ export class WorkGroupFormComponent extends FormBase implements OnInit, AfterVie
   @ViewChild('workCalendarName') workCalendarName?: NzInputTextComponent;
 
   constructor(private fb: FormBuilder,
-              private workGroupService: WorkGroupService) {
+              private workGroupService: WorkCalendarService) {
     super();
 
     this.fg = this.fb.group({
@@ -54,7 +55,7 @@ export class WorkGroupFormComponent extends FormBase implements OnInit, AfterVie
     this.fg.get('memberList')?.setValue([SessionManager.getUserId()]);
   }
 
-  modifyForm(formData: WorkGroup): void {
+  modifyForm(formData: WorkCalendar): void {
     this.formType = FormType.MODIFY;
 
     this.fg.patchValue(formData);
@@ -67,7 +68,7 @@ export class WorkGroupFormComponent extends FormBase implements OnInit, AfterVie
   get(id: number): void {
     this.workGroupService.getWorkGroup(id)
         .subscribe(
-          (model: ResponseObject<WorkGroup>) => {
+          (model: ResponseObject<WorkCalendar>) => {
             if (model.data) {
               this.modifyForm(model.data);
               this.color = model.data.color;
@@ -82,7 +83,7 @@ export class WorkGroupFormComponent extends FormBase implements OnInit, AfterVie
     this.workGroupService
         .saveWorkGroup(this.fg.getRawValue())
         .subscribe(
-            (model: ResponseObject<WorkGroup>) => {
+            (model: ResponseObject<WorkCalendar>) => {
               this.formSaved.emit(this.fg.getRawValue());
             }
         );
@@ -91,7 +92,7 @@ export class WorkGroupFormComponent extends FormBase implements OnInit, AfterVie
   remove(id: number): void {
     this.workGroupService.deleteWorkGroup(id)
         .subscribe(
-            (model: ResponseObject<WorkGroup>) => {
+            (model: ResponseObject<WorkCalendar>) => {
               this.formDeleted.emit(this.fg.getRawValue());
             }
         );
@@ -100,7 +101,7 @@ export class WorkGroupFormComponent extends FormBase implements OnInit, AfterVie
   getAllMember(): void {
     this.workGroupService.getMemberList()
         .subscribe(
-            (model: ResponseList<WorkGroupMember>) => {
+            (model: ResponseList<WorkCalendarMember>) => {
               if (model.data) {
                   this.memberList = model.data;
               } else {

@@ -1,7 +1,6 @@
-export interface WorkGroup {
+export interface WorkCalendar {
   workCalendarId: number;
   workCalendarName: string;
   color: string;
   memberList: string[];
 }
-

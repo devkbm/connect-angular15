@@ -5,16 +5,16 @@ import { FormBase, FormType } from 'src/app/core/form/form-base';
 import { ResponseObject } from 'src/app/core/model/response-object';
 import { ResponseList } from 'src/app/core/model/response-list';
 
-import { WorkGroupSchedule } from './workgroup-schedule.model';
-import { WorkScheduleService } from './work-schedule.service';
-import { WorkGroup } from '../work-group/workgroup.model';
+import { WorkCalendarEvent } from './work-calendar-event.model';
+import { WorkCalendarEventService } from './work-calendar-event.service';
+
+import { WorkCalendarService } from '../calendar/work-calendar.service';
+import { WorkCalendar } from '../calendar/work-calendar.model';
 
 import { NzInputTextareaComponent } from 'src/app/shared/nz-input-textarea/nz-input-textarea.component';
 import { TimeFormat } from 'src/app/shared/nz-input-datetime/nz-input-datetime.component';
 
 import * as dateFns from "date-fns";
-import { WorkGroupService } from '../work-group/workgroup.service';
-
 
 export interface NewFormValue {
   workCalendarId: number;
@@ -23,11 +23,11 @@ export interface NewFormValue {
 }
 
 @Component({
-selector: 'app-work-schedule-form',
-templateUrl: './work-schedule-form.component.html',
-styleUrls: ['./work-schedule-form.component.css']
+  selector: 'app-work-calendar-event-form',
+  templateUrl: './work-calendar-event-form.component.html',
+  styleUrls: ['./work-calendar-event-form.component.css']
 })
-export class WorkScheduleFormComponent extends FormBase implements OnInit, AfterViewInit, OnChanges {
+export class WorkCalendarEventFormComponent extends FormBase implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('text', {static: true}) text!: NzInputTextareaComponent;
   @Input() override initLoadId: number = -1;
@@ -35,11 +35,11 @@ export class WorkScheduleFormComponent extends FormBase implements OnInit, After
 
   timeFormat: TimeFormat = TimeFormat.HourMinute;
 
-  workGroupList: WorkGroup[] = [];
+  workGroupList: WorkCalendar[] = [];
 
   constructor(private fb: FormBuilder,
-              private service: WorkScheduleService,
-              private workGroupService: WorkGroupService) {
+              private service: WorkCalendarEventService,
+              private workGroupService: WorkCalendarService) {
     super();
 
     this.fg = this.fb.group({
@@ -84,7 +84,7 @@ export class WorkScheduleFormComponent extends FormBase implements OnInit, After
     this.fg.get('end')?.setValue(dateFns.format(params.end, "yyyy-MM-dd HH:mm:ss"));
   }
 
-  modifyForm(formData: WorkGroupSchedule): void {
+  modifyForm(formData: WorkCalendarEvent): void {
     this.formType = FormType.MODIFY;
 
     this.fg.patchValue(formData);
@@ -97,7 +97,7 @@ export class WorkScheduleFormComponent extends FormBase implements OnInit, After
   get(id: number): void {
     this.service.getWorkGroupSchedule(id)
         .subscribe(
-            (model: ResponseObject<WorkGroupSchedule>) => {
+            (model: ResponseObject<WorkCalendarEvent>) => {
               if (model.data) {
                 console.log(model.data);
                 this.modifyForm(model.data);
@@ -115,7 +115,7 @@ export class WorkScheduleFormComponent extends FormBase implements OnInit, After
     this.service
         .saveWorkGroupSchedule(this.fg.getRawValue())
         .subscribe(
-            (model: ResponseObject<WorkGroupSchedule>) => {
+            (model: ResponseObject<WorkCalendarEvent>) => {
               this.formSaved.emit(this.fg.getRawValue());
             }
         );
@@ -124,7 +124,7 @@ export class WorkScheduleFormComponent extends FormBase implements OnInit, After
   remove(id: number): void {
     this.service.deleteWorkGroupSchedule(id)
         .subscribe(
-            (model: ResponseObject<WorkGroupSchedule>) => {
+            (model: ResponseObject<WorkCalendarEvent>) => {
               this.formDeleted.emit(this.fg.getRawValue());
             }
         );
@@ -134,7 +134,7 @@ export class WorkScheduleFormComponent extends FormBase implements OnInit, After
     this.workGroupService
         .getMyWorkGroupList()
         .subscribe(
-          (model: ResponseList<WorkGroup>) => {
+          (model: ResponseList<WorkCalendar>) => {
             if (model.total > 0) {
                 this.workGroupList = model.data;
             } else {

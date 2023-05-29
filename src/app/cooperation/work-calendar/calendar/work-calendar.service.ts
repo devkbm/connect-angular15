@@ -8,22 +8,23 @@ import { GlobalProperty } from 'src/app/core/global-property';
 import { DataService } from 'src/app/core/service/data.service';
 import { ResponseObject } from 'src/app/core/model/response-object';
 import { ResponseList } from 'src/app/core/model/response-list';
+import { WorkCalendar } from './work-calendar.model';
+import { WorkCalendarMember } from './work-calendar-member.model';
 
-import { WorkGroup } from './workgroup.model';
-import { WorkGroupMember } from './workgroup-member.model';
-
-@Injectable()
-export class WorkGroupService extends DataService {
+@Injectable({
+  providedIn: 'root'
+})
+export class WorkCalendarService extends DataService {
 
   constructor(http: HttpClient, tokenExtractor: HttpXsrfTokenExtractor) {
-      super('/api/grw', http, tokenExtractor);
+    super('/api/grw', http, tokenExtractor);
   }
 
   /**
    * @description 작업그룹명단을 조회한다.
    * @param params 조회 조건 객체
    */
-  public getWorkGroupList(params?: any): Observable<ResponseList<WorkGroup>> {
+  public getWorkGroupList(params?: any): Observable<ResponseList<WorkCalendar>> {
     const url = `${this.API_URL}/workcalendar`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
@@ -32,9 +33,9 @@ export class WorkGroupService extends DataService {
     };
 
     return this.http
-      .get<ResponseList<WorkGroup>>(url, options)
+      .get<ResponseList<WorkCalendar>>(url, options)
       .pipe(
-        catchError(this.handleError<ResponseList<WorkGroup>>('getWorkGroupList', undefined))
+        catchError(this.handleError<ResponseList<WorkCalendar>>('getWorkGroupList', undefined))
       );
   }
 
@@ -42,7 +43,7 @@ export class WorkGroupService extends DataService {
    * @description 내가 속한 작업그룹명단을 조회한다.
    * @param params 조회 조건 객체
    */
-  public getMyWorkGroupList(): Observable<ResponseList<WorkGroup>> {
+  public getMyWorkGroupList(): Observable<ResponseList<WorkCalendar>> {
     const url = `${this.API_URL}/myworkcalendar`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
@@ -50,9 +51,9 @@ export class WorkGroupService extends DataService {
     };
 
     return this.http
-      .get<ResponseList<WorkGroup>>(url, options)
+      .get<ResponseList<WorkCalendar>>(url, options)
       .pipe(
-        catchError(this.handleError<ResponseList<WorkGroup>>('getMyWorkGroupList', undefined))
+        catchError(this.handleError<ResponseList<WorkCalendar>>('getMyWorkGroupList', undefined))
       );
   }
 
@@ -60,7 +61,7 @@ export class WorkGroupService extends DataService {
    * @description 작업그룹을 조회한다.
    * @param id 작업그룹id
    */
-  public getWorkGroup(id: number): Observable<ResponseObject<WorkGroup>> {
+  public getWorkGroup(id: number): Observable<ResponseObject<WorkCalendar>> {
     const url = `${this.API_URL}/workcalendar/${id}`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
@@ -68,9 +69,9 @@ export class WorkGroupService extends DataService {
     };
 
     return this.http
-      .get<ResponseObject<WorkGroup>>(url, options)
+      .get<ResponseObject<WorkCalendar>>(url, options)
       .pipe(
-        catchError(this.handleError<ResponseObject<WorkGroup>>('getWorkGroup', undefined))
+        catchError(this.handleError<ResponseObject<WorkCalendar>>('getWorkGroup', undefined))
       );
   }
 
@@ -78,7 +79,7 @@ export class WorkGroupService extends DataService {
    * @description 작업그룹을 저장한다.
    * @param workGroup
    */
-  public saveWorkGroup(workGroup: WorkGroup): Observable<ResponseObject<WorkGroup>> {
+  public saveWorkGroup(workGroup: WorkCalendar): Observable<ResponseObject<WorkCalendar>> {
     const url = `${this.API_URL}/workcalendar`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
@@ -86,9 +87,9 @@ export class WorkGroupService extends DataService {
     };
 
     return this.http
-    .post<ResponseObject<WorkGroup>>(url, workGroup, options)
+    .post<ResponseObject<WorkCalendar>>(url, workGroup, options)
     .pipe(
-      catchError(this.handleError<ResponseObject<WorkGroup>>('saveWorkGroup', undefined))
+      catchError(this.handleError<ResponseObject<WorkCalendar>>('saveWorkGroup', undefined))
     );
 
   }
@@ -97,7 +98,7 @@ export class WorkGroupService extends DataService {
    * @description 작업그룹을 삭제한다.
    * @param id 작업그룹 id
    */
-  public deleteWorkGroup(id: number): Observable<ResponseObject<WorkGroup>> {
+  public deleteWorkGroup(id: number): Observable<ResponseObject<WorkCalendar>> {
     const url = `${this.API_URL}/workcalendar/${id}`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
@@ -105,13 +106,13 @@ export class WorkGroupService extends DataService {
     };
 
     return this.http
-      .delete<ResponseObject<WorkGroup>>(url, options)
+      .delete<ResponseObject<WorkCalendar>>(url, options)
       .pipe(
-        catchError(this.handleError<ResponseObject<WorkGroup>>('deleteWorkGroup', undefined))
+        catchError(this.handleError<ResponseObject<WorkCalendar>>('deleteWorkGroup', undefined))
       );
   }
 
-  public getMemberList(params?: any): Observable<ResponseList<WorkGroupMember>> {
+  public getMemberList(params?: any): Observable<ResponseList<WorkCalendarMember>> {
     const url = GlobalProperty.serverUrl + `/api/system/user`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
@@ -120,13 +121,10 @@ export class WorkGroupService extends DataService {
     };
 
     return this.http
-      .get<ResponseList<WorkGroupMember>>(url, options)
+      .get<ResponseList<WorkCalendarMember>>(url, options)
       .pipe(
-        catchError(this.handleError<ResponseList<WorkGroupMember>>('getMemberList', undefined))
+        catchError(this.handleError<ResponseList<WorkCalendarMember>>('getMemberList', undefined))
       );
   }
-
-
-
 
 }

@@ -1,4 +1,4 @@
-export interface WorkGroupSchedule {
+export interface WorkCalendarEvent {
   id: string | null;
   text: string | null;
   start: string | null;

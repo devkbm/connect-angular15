@@ -10,6 +10,7 @@ import { BoardComponent } from './board/board.component';
 import { WorkgroupComponent } from './workgroup/workgroup.component';
 import { SurveyFormComponent } from './survey/component/survey-form.component';
 import { TodosComponent } from './todo/todos.component';
+import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'workgroup',     component: WorkgroupComponent},
       {path: 'surveyform',    component: SurveyFormComponent},
       {path: 'todo',          component: TodosComponent},
+      {path: 'workcalendar',  component: WorkCalendarComponent},
     ]
   }
 ];

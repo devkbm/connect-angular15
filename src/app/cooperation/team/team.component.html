@@ -1,5 +1,17 @@
-<button (click)="getGridList('d')">df</button>
-<button (click)="newTeam()">팀등록</button>
+<app-nz-page-header-custom title="팀 정보" subtitle="팀 정보 관리"></app-nz-page-header-custom>
+
+<div nz-row class="btn-group">
+  <button nz-button (click)="getGridList('d')">
+    <span nz-icon nzType="search"></span>조회
+  </button>
+
+  <nz-divider nzType="vertical"></nz-divider>
+
+  <button nz-button (click)="newTeam()">
+    <span nz-icon nzType="form"></span>팀등록
+  </button>
+</div>
+
 <div style="height:300px">
   <app-team-grid [list]="gridList"
     (editButtonClicked)="editTeam($event)"

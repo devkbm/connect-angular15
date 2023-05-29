@@ -4,22 +4,22 @@ import { DaypilotCalendarNavigatorComponent } from 'src/app/shared/calendar/dayp
 import { DayPilot } from '@daypilot/daypilot-lite-angular';
 import { ModeChangedArgs } from 'src/app/shared/calendar/daypilot-calendar.component';
 
-import { NewFormValue, WorkScheduleFormComponent } from './schedule/work-schedule-form.component';
-import { WorkGroupFormComponent } from './work-group/workgroup-form.component';
-import { MyWorkGroupGridComponent } from './work-group/myworkgroup-grid.component';
-import { NewDateSelectedArgs, WorkCalendarComponent } from './calendar/work-calendar.component';
+import { NewDateSelectedArgs, WorkCalendarViewComponent } from './calendar-view/work-calendar-view.component';
+import { NewFormValue, WorkCalendarEventFormComponent } from './event/work-calendar-event-form.component';
+import { MyWorkCalendarGridComponent } from './calendar/my-work-calendar-grid.component';
+import { WorkCalendarFormComponent } from './calendar/work-calendar-form.component';
 
 @Component({
-  selector: 'app-workgroup',
-  templateUrl: './workgroup.component.html',
-  styleUrls: ['./workgroup.component.css']
+  selector: 'app-work-calendar',
+  templateUrl: './work-calendar.component.html',
+  styleUrls: ['./work-calendar.component.css']
 })
-export class WorkgroupComponent implements OnInit {
+export class WorkCalendarComponent implements OnInit {
 
-  @ViewChild('myWorkGroupGrid', {static: true}) myWorkGroupGrid!: MyWorkGroupGridComponent;
-  @ViewChild('workCalendar', {static: true}) workCalendar!: WorkCalendarComponent;
-  @ViewChild('workScheduleForm', {static: false}) workScheduleForm!: WorkScheduleFormComponent;
-  @ViewChild('workGroupForm', {static: false}) workGroupForm!: WorkGroupFormComponent;
+  @ViewChild('myWorkGroupGrid', {static: true}) myWorkGroupGrid!: MyWorkCalendarGridComponent;
+  @ViewChild('workCalendar', {static: true}) workCalendar!: WorkCalendarViewComponent;
+  @ViewChild('workScheduleForm', {static: false}) workScheduleForm!: WorkCalendarEventFormComponent;
+  @ViewChild('workGroupForm', {static: false}) workGroupForm!: WorkCalendarFormComponent;
 
   @ViewChild('navigator', {static: true}) navigator!: DaypilotCalendarNavigatorComponent;
 
