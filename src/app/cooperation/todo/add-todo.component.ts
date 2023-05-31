@@ -4,8 +4,7 @@ import { TodoModel } from './todo.model';
 @Component({
   selector: 'app-add-todo',
   template: `
-   <button (click)="addTodo(newText)">+</button>
-   <input type="text" placeholder="할 일 추가" [(ngModel)]="newText" (keyup.enter)="addTodo(newText)">
+   <button (click)="addTodo(newText)">+</button><input type="text" placeholder="할 일 추가" [(ngModel)]="newText" (keyup.enter)="addTodo(newText)">
   `,
   styles: [`
     :host {
@@ -17,6 +16,7 @@ import { TodoModel } from './todo.model';
     input {
       display: inline-block;
       font-size: 18px;
+      color: black;
       border: none;
     }
 
@@ -28,7 +28,7 @@ import { TodoModel } from './todo.model';
       width: 24px;
       height: 24px;
       border-radius: 24px;
-      color: white;
+      color: width;
       line-height: 17px;
       border: 1px solid darkgray;
       background-color: darkblue;
